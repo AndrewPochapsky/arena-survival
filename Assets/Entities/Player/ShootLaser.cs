@@ -2,12 +2,13 @@
 using System.Collections;
 
 public class ShootLaser : MonoBehaviour {
+    private GameObject player;
     public GameObject laserPrefab;
     public float speedOfLaser;
     public float firingRate;
 	// Use this for initialization
 	void Start () {
-	
+        player = GameObject.FindGameObjectWithTag("Player");
 	}
 	
 	// Update is called once per frame
@@ -28,7 +29,7 @@ public class ShootLaser : MonoBehaviour {
     void Shoot()
     {
         GameObject beam = Instantiate(laserPrefab, new Vector3(transform.position.x, transform.position.y, transform.position.z), Quaternion.identity) as GameObject;
-        beam.GetComponent<Rigidbody2D>().velocity = new Vector3(0, speedOfLaser, 0);
+        beam.GetComponent<Rigidbody2D>().velocity = player.transform.forward * speedOfLaser;
         //AudioSource.PlayClipAtPoint(fireSound, transform.position);
     }
 }
