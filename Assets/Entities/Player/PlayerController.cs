@@ -82,7 +82,7 @@ public class PlayerController : MonoBehaviour {
     void OnTriggerEnter2D(Collider2D collider)
     {
         Projectile missle = collider.gameObject.GetComponent<Projectile>();
-        if (missle)
+        if (missle.tag !="Friendly")
         {
             HealthText.health -= missle.GetDamage();
             missle.Hit();

@@ -13,7 +13,7 @@ public class RotateToMouse : MonoBehaviour {
 
     public Camera camera;
     public SpriteRotation spriteRotation;
-    private Vector2 direction;
+    public Vector2 direction;
     private Vector2 mousePosition;
     private Transform myTransform;
     private GameObject player;
@@ -51,8 +51,7 @@ public class RotateToMouse : MonoBehaviour {
     void Shoot()
     {
         GameObject beam = Instantiate(laserPrefab, new Vector3(transform.position.x, transform.position.y, transform.position.z), Quaternion.identity) as GameObject;
-        //beam.GetComponent<Rigidbody2D>().velocity = player.transform.forward * speedOfLaser;
-        beam.GetComponent<Rigidbody2D>().velocity=(direction * speedOfLaser);
+        beam.GetComponent<Rigidbody2D>().velocity = (direction * speedOfLaser);
         //AudioSource.PlayClipAtPoint(fireSound, transform.position);
     }
 }
