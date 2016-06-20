@@ -9,11 +9,10 @@ public class PlayerController : MonoBehaviour {
     public float padding = 1;
     float xmin;
     float xmax;
-    public float health = 250;
     public LevelManager levelManager;
     public AudioClip dieSound;
-    
-    
+
+    public bool invincible = false;
     private LivesText livesText;
    
 	// Use this for initialization
@@ -26,7 +25,7 @@ public class PlayerController : MonoBehaviour {
         xmin = leftMost.x + padding;
         xmax = rightMost.x - padding;
         LivesText.ResetLives();
-        HealthText.ResetHealth();
+        HealthController.ResetHealth();
 
 
     }
@@ -60,32 +59,41 @@ public class PlayerController : MonoBehaviour {
 
 
     }
-        
-   
 
-    //void OnTriggerEnter2D(Collider2D collider)
-    //{
-    //    Projectile missle = collider.gameObject.GetComponent<Projectile>();
-    //    if (missle.tag !="Friendly")
-    //    {
-    //        HealthText.health -= missle.GetDamage();
-    //        missle.Hit();
-    //        if (HealthText.health <= 0)
-    //        {
-    //            if(LivesText.lives > 0)
-    //            {
-    //                Respawn();
-    //            }
-    //            else
-    //            {
-    //                Die();
-    //            }
-                
-                 
-    //        }
-    //    }
 
-    //}
+
+    IEnumerator OnCollisionStay2D(Collision2D col)
+    {
+        if (!invincible)
+        {
+            Projectile missle = col.gameObject.GetComponent<Projectile>();
+            ChaserEnemyBehaviour chaserEnemy = col.gameObject.GetComponent<ChaserEnemyBehaviour>();
+            if (missle && missle.tag != "Friendly")
+            {
+                HealthController.health -= missle.GetDamage();
+                invincible = true;
+                missle.Hit();
+                if (HealthController.health <= 0)
+                {
+                    Die();
+                }
+            }
+            if (chaserEnemy)
+            {
+                HealthController.health -= chaserEnemy.GetDamage();
+                if (HealthController.health > 0)
+                {
+                    invincible = true;
+                    yield return new WaitForSeconds(2);
+                    invincible = false;
+                }
+                else
+                {
+                    Die();
+                }
+            }
+        }
+    }
 
     void Die()
     {
@@ -94,11 +102,11 @@ public class PlayerController : MonoBehaviour {
         levelManager.LoadLevel("Win");
     }
 
-    void Respawn()
-    {
-        LivesText.LoseLives();
-        HealthText.health = 250f;
-        //Destroy(gameObject);
+    //void Respawn()
+    //{
+    //    LivesText.LoseLives();
+    //    HealthText.health = 250f;
+    //    //Destroy(gameObject);
         
-    }
+    //}
 }
