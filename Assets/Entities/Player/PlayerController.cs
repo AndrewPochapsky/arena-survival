@@ -34,6 +34,7 @@ public class PlayerController : MonoBehaviour {
     // Update is called once per frame
     void Update()
     {
+        rb.freezeRotation = true;
         if (Input.GetKey(KeyCode.A))
         {
             transform.Translate (Vector3.left * speed * Time.deltaTime);
