@@ -62,8 +62,8 @@ public class PlayerController : MonoBehaviour {
             transform.Translate(Vector3.down * speed * Time.deltaTime);
         }
         //restrict the player to the gamespace
-        float newX = Mathf.Clamp(transform.position.x, xmin, xmax);
-        transform.position = new Vector3(newX, transform.position.y, transform.position.z);
+       // float newX = Mathf.Clamp(transform.position.x, xmin, xmax);
+        //transform.position = new Vector3(newX, transform.position.y, transform.position.z);
 
         if(!thrustersInstantiated)
         {
