@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class RotateToMouse : MonoBehaviour {
+public class Cannon : MonoBehaviour {
 
     public enum SpriteRotation
     {
