@@ -21,6 +21,7 @@ public class RotateToMouse : MonoBehaviour {
     public float speedOfLaser;
     public float firingRate;
     private float angle;
+    public GameObject cannonExit;
 
 
 	// Use this for initialization
@@ -50,7 +51,7 @@ public class RotateToMouse : MonoBehaviour {
 
     void Shoot()
     {
-        GameObject beam = Instantiate(laserPrefab, new Vector3(transform.position.x, transform.position.y, transform.position.z), Quaternion.identity) as GameObject;
+        GameObject beam = Instantiate(laserPrefab, new Vector3(cannonExit.transform.position.x, cannonExit.transform.position.y, cannonExit.transform.position.z), Quaternion.identity) as GameObject;
         beam.GetComponent<Rigidbody2D>().velocity = (direction * speedOfLaser);
         //AudioSource.PlayClipAtPoint(fireSound, transform.position);
     }
