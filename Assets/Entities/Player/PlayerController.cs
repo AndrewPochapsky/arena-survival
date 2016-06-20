@@ -62,29 +62,29 @@ public class PlayerController : MonoBehaviour {
         
    
 
-    void OnTriggerEnter2D(Collider2D collider)
-    {
-        Projectile missle = collider.gameObject.GetComponent<Projectile>();
-        if (missle.tag !="Friendly")
-        {
-            HealthText.health -= missle.GetDamage();
-            missle.Hit();
-            if (HealthText.health <= 0)
-            {
-                if(LivesText.lives > 0)
-                {
-                    Respawn();
-                }
-                else
-                {
-                    Die();
-                }
+    //void OnTriggerEnter2D(Collider2D collider)
+    //{
+    //    Projectile missle = collider.gameObject.GetComponent<Projectile>();
+    //    if (missle.tag !="Friendly")
+    //    {
+    //        HealthText.health -= missle.GetDamage();
+    //        missle.Hit();
+    //        if (HealthText.health <= 0)
+    //        {
+    //            if(LivesText.lives > 0)
+    //            {
+    //                Respawn();
+    //            }
+    //            else
+    //            {
+    //                Die();
+    //            }
                 
                  
-            }
-        }
+    //        }
+    //    }
 
-    }
+    //}
 
     void Die()
     {
