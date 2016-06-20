@@ -4,16 +4,12 @@ using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour {
 
-    public  ParticleSystem thrusters;
-    public GameObject laserPrefab;
     Rigidbody2D rb;
     public int speed;
     public float padding = 1;
     float xmin;
     float xmax;
-    public float firingRate;
     public float health = 250;
-    private bool thrustersInstantiated = false;
     public LevelManager levelManager;
     public AudioClip dieSound;
     
@@ -40,36 +36,23 @@ public class PlayerController : MonoBehaviour {
     {
         if (Input.GetKey(KeyCode.A))
         {
-            //transform.position += new Vector3(speed * Time.deltaTime, 0f, 0f);
             transform.Translate (Vector3.left * speed * Time.deltaTime);
         }
         if (Input.GetKey(KeyCode.W))
         {
-            //transform.position += new Vector3(speed * Time.deltaTime, 0f, 0f);
-           // transform.position += Vector3.up * speed * Time.deltaTime;
             transform.Translate(Vector3.up * speed * Time.deltaTime);
         }
         if (Input.GetKey(KeyCode.D))
         {
-            //transform.position -= new Vector3(speed * Time.deltaTime, 0f, 0f);
-           // transform.position += Vector3.right* speed * Time.deltaTime;
             transform.Translate(Vector3.right * speed * Time.deltaTime);
         }
         if (Input.GetKey(KeyCode.S))
         {
-            //transform.position += new Vector3(speed * Time.deltaTime, 0f, 0f);
-          //  transform.position += Vector3.down * speed * Time.deltaTime;
             transform.Translate(Vector3.down * speed * Time.deltaTime);
         }
         //restrict the player to the gamespace
-       // float newX = Mathf.Clamp(transform.position.x, xmin, xmax);
+        //float newX = Mathf.Clamp(transform.position.x, xmin, xmax);
         //transform.position = new Vector3(newX, transform.position.y, transform.position.z);
-
-        if(!thrustersInstantiated)
-        {
-            //CreateThrusters();
-        }
-        Vector3 thrusterPosition = new Vector3(transform.position.x, transform.position.y, transform.position.z);
 
 
         
@@ -117,29 +100,4 @@ public class PlayerController : MonoBehaviour {
         //Destroy(gameObject);
         
     }
-
-
-    /*
-    void CreateThrusters()
-    {
-        GameObject thruster = Instantiate(thrusters, new Vector3(transform.position.x, transform.position.y, transform.position.z), Quaternion.identity) as GameObject;
-        thruster.transform.parent = this;
-        thrustersInstantiated = true;
-    }
-    */
-
-
-
-
-
-    /*
-    float moveHorizontal = Input.GetAxis("Horizontal");
-    float moveVertical = Input.GetAxis("Vertical");
-
-    Vector3 movement = new Vector3(moveHorizontal, 0f, moveVertical);
-
-    rb.AddForce(movement * speed);
-  */
-
-
 }

@@ -19,10 +19,10 @@ public class RotateToMouse : MonoBehaviour {
     private GameObject player;
     public GameObject laserPrefab;
     public float speedOfLaser;
-    public float firingRate;
+    public float firingRate=0.5f;
     private float angle;
     public GameObject cannonExit;
-
+    private float nextFire = 0.0f;
 
 	// Use this for initialization
 	void Start () {
@@ -38,14 +38,10 @@ public class RotateToMouse : MonoBehaviour {
         angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg + (int)spriteRotation;
         transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
 
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButton(0)&&Time.time > nextFire)
         {
-            InvokeRepeating("Shoot", 0.000001f, firingRate);
-
-        }
-        if (Input.GetMouseButtonUp(0))
-        {
-            CancelInvoke("Shoot");
+            nextFire = Time.time + firingRate;
+            Shoot();
         }
     }
 
