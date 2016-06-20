@@ -3,20 +3,15 @@ using System.Collections;
 using System.Collections.Generic;
 
 public class EnemySpawner : MonoBehaviour {
-
-    
-    public float width= 10f;
-    public float height = 5f;
     public float speed = 5f;
     float xmin;
     float xmax;
     public float padding = 10f; 
-    private bool lastTouchWasRight = true;
-    public float spawnDelay = 0.5f;
+    public float spawnDelay = 0f;
 
     List<GameObject> enemyList = new List<GameObject>();
-    public GameObject enemyPrefab;
-    public GameObject enemyPrefab2;
+    public GameObject chaserEnemy;
+    public GameObject shootingEnemy;
     
 
 
@@ -38,31 +33,31 @@ public class EnemySpawner : MonoBehaviour {
 
     public void OnDrawGizmos()
     {
-        Gizmos.DrawWireCube(transform.position, new Vector3(width, height));
+        //Gizmos.DrawWireCube(transform.position, new Vector3(width, height));
     }
 	
 	// Update is called once per frame
 	void Update () {
 
         //assigning string value to lastTouch
-        if (transform.position.x >= xmax)
-        {
-            lastTouchWasRight = true;
-        }
-        else if (transform.position.x <= xmin)
-        {
-            lastTouchWasRight = false;
-        }
-        //using the value of lastTouch to move 
-        if (lastTouchWasRight ==true)
-        {
-            MoveLeft();
-        }
-        else if (lastTouchWasRight == false)
-        {
-            MoveRight();
+        //if (transform.position.x >= xmax)
+        //{
+        //    lastTouchWasRight = true;
+        //}
+        //else if (transform.position.x <= xmin)
+        //{
+        //    lastTouchWasRight = false;
+        //}
+        ////using the value of lastTouch to move 
+        //if (lastTouchWasRight ==true)
+        //{
+        //    MoveLeft();
+        //}
+        //else if (lastTouchWasRight == false)
+        //{
+        //    MoveRight();
             
-        }
+        //}
 
         if (AllMembersDead())
         {
@@ -113,10 +108,10 @@ public class EnemySpawner : MonoBehaviour {
 
     void SpawnUntilFull()
     {
-        enemyList.Add(enemyPrefab);
-        enemyList.Add(enemyPrefab2);
+        enemyList.Add(chaserEnemy);
+        //enemyList.Add(enemyPrefab2);
 
-        int prefabIndex = Random.Range(0, 2);
+        int prefabIndex = Random.Range(0, 1);
         Transform freePosition = NextFreePosition();
         if (freePosition)
         {
