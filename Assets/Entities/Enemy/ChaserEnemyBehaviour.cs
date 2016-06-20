@@ -9,20 +9,21 @@ public class ChaserEnemyBehaviour : MonoBehaviour
     public int scoreValue = 150;
     public float speed = 0.01f;
 
+    
     private float minDistance = 1f;
     private float range;
-    //private ScoreKeeper scoreKeeper;
+    private ScoreKeeper scoreKeeper;
     public AudioClip deathSound;
     void Start()
     {
         player = GameObject.FindObjectOfType<PlayerController>();
-        //scoreKeeper = GameObject.Find("Score").GetComponent<ScoreKeeper>();
+        scoreKeeper = GameObject.Find("Score").GetComponent<ScoreKeeper>();
 
     }
 
     void Update()
     {
-        LookAtPlayer();  
+        ChasePlayer();  
     }
 
     void OnCollisionEnter2D(Collision2D col)
@@ -42,12 +43,13 @@ public class ChaserEnemyBehaviour : MonoBehaviour
     void Die()
     {
         Destroy(gameObject);
-        //scoreKeeper.Score(scoreValue);
+        scoreKeeper.Score(scoreValue);
         AudioSource.PlayClipAtPoint(deathSound, transform.position);
     }
 
-    void LookAtPlayer()
+    void ChasePlayer()
     {
+        //LookAtPlayer
         Vector3 dir = player.transform.position - transform.position;
         float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
         transform.rotation = Quaternion.AngleAxis(angle - 90, Vector3.forward);
