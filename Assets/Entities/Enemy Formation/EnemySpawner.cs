@@ -8,7 +8,7 @@ public class EnemySpawner : MonoBehaviour {
     float xmax;
     public float padding = 10f; 
     public float spawnDelay = 0f;
-
+    public float wave = 1;
     List<GameObject> enemyList = new List<GameObject>();
     public GameObject chaserEnemy;
     public GameObject shootingEnemy;
@@ -17,9 +17,6 @@ public class EnemySpawner : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
-
-       
-
         SpawnUntilFull();
 
         float distance = transform.position.z - Camera.main.transform.position.z;
@@ -30,34 +27,9 @@ public class EnemySpawner : MonoBehaviour {
 
 
     }
-
-    public void OnDrawGizmos()
-    {
-        //Gizmos.DrawWireCube(transform.position, new Vector3(width, height));
-    }
 	
 	// Update is called once per frame
 	void Update () {
-
-        //assigning string value to lastTouch
-        //if (transform.position.x >= xmax)
-        //{
-        //    lastTouchWasRight = true;
-        //}
-        //else if (transform.position.x <= xmin)
-        //{
-        //    lastTouchWasRight = false;
-        //}
-        ////using the value of lastTouch to move 
-        //if (lastTouchWasRight ==true)
-        //{
-        //    MoveLeft();
-        //}
-        //else if (lastTouchWasRight == false)
-        //{
-        //    MoveRight();
-            
-        //}
 
         if (AllMembersDead())
         {
@@ -88,16 +60,6 @@ public class EnemySpawner : MonoBehaviour {
             }
         }
         return null;
-    }
-
-    void MoveLeft()
-    {
-        transform.position += Vector3.left * speed * Time.deltaTime;
-      
-    }
-    void MoveRight()
-    {
-        transform.position += Vector3.right * speed * Time.deltaTime;
     }
 
     void OnTriggerEnter2D(Collider2D col)

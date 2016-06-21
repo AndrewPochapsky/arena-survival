@@ -13,7 +13,7 @@ public class ChaserEnemyBehaviour : MonoBehaviour
     private float minDistance = 1f;
     private float range;
     private ScoreKeeper scoreKeeper;
-    public AudioClip deathSound;
+    //public AudioClip deathSound;
 
     public float damage = 2f;
 
@@ -26,7 +26,7 @@ public class ChaserEnemyBehaviour : MonoBehaviour
     {
         player = GameObject.FindObjectOfType<PlayerController>();
         scoreKeeper = GameObject.Find("Score").GetComponent<ScoreKeeper>();
-
+        
     }
 
     void Update()
@@ -52,7 +52,7 @@ public class ChaserEnemyBehaviour : MonoBehaviour
     {
         Destroy(gameObject);
         scoreKeeper.Score(scoreValue);
-        AudioSource.PlayClipAtPoint(deathSound, transform.position);
+        //AudioSource.PlayClipAtPoint(deathSound, transform.position);
     }
 
     void ChasePlayer()
@@ -76,5 +76,6 @@ public class ChaserEnemyBehaviour : MonoBehaviour
 
 
     }
+   
 
 }
