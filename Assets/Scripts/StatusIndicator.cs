@@ -8,6 +8,16 @@ public class StatusIndicator : MonoBehaviour {
     [SerializeField]
     private Text healthText;
 
+    Quaternion rotation;
+    void Awake()
+    {
+        rotation = transform.rotation;
+    }
+    void LateUpdate()
+    {
+        transform.rotation = rotation;
+    }
+
     void Start()
     {
         if (healthBarRect == null)

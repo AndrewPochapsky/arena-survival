@@ -26,17 +26,14 @@ public class Cannon : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-        player = GameObject.FindGameObjectWithTag("Player");
+        //player = GameObject.FindGameObjectWithTag("Player");
         myTransform = transform;
 	}
 	
 	// Update is called once per frame
 	void Update ()
     {
-        mousePosition = camera.ScreenToWorldPoint(Input.mousePosition);
-        direction = (mousePosition - (Vector2)transform.position).normalized;
-        angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg + (int)spriteRotation;
-        transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
+        MoveCannon();
 
         if (Input.GetMouseButton(0)&&Time.time > nextFire)
         {
@@ -50,5 +47,13 @@ public class Cannon : MonoBehaviour {
         GameObject beam = Instantiate(laserPrefab, new Vector3(cannonExit.transform.position.x, cannonExit.transform.position.y, cannonExit.transform.position.z), Quaternion.identity) as GameObject;
         beam.GetComponent<Rigidbody2D>().velocity = (direction * speedOfLaser);
         //AudioSource.PlayClipAtPoint(fireSound, transform.position);
+    }
+
+    void MoveCannon()
+    {
+        mousePosition = camera.ScreenToWorldPoint(Input.mousePosition);
+        direction = (mousePosition - (Vector2)transform.position).normalized;
+        angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg + (int)spriteRotation;
+        transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
     }
 }

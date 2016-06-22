@@ -57,7 +57,7 @@ public class ChaserEnemyBehaviour : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D col)
     {
-        print("Hit "+col);
+        
         Projectile missle = col.gameObject.GetComponent<Projectile>();
         if (missle)
         {
@@ -90,23 +90,10 @@ public class ChaserEnemyBehaviour : MonoBehaviour
             Vector3 dir = player.transform.position - transform.position;
             float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
             transform.rotation = Quaternion.AngleAxis(angle - 90, Vector3.forward);
-
             range = Vector2.Distance(transform.position, player.transform.position);
-
-            //if (range > minDistance)
-            //{
-            // Debug.Log(range);
-
             transform.position = Vector2.MoveTowards(transform.position, player.transform.position, speed * Time.deltaTime);
-            // }
         }
 
 
     }
-   
-    void GetDamaged()
-    {
-
-    }
-
 }
