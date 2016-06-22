@@ -66,18 +66,8 @@ public class PlayerController : MonoBehaviour {
     {
         if (!invincible)
         {
-            Projectile missle = col.gameObject.GetComponent<Projectile>();
+            
             ChaserEnemyBehaviour chaserEnemy = col.gameObject.GetComponent<ChaserEnemyBehaviour>();
-            if (missle && missle.tag != "Friendly")
-            {
-                HealthController.health -= missle.GetDamage();
-                invincible = true;
-                missle.Hit();
-                if (HealthController.health <= 0)
-                {
-                    Die();
-                }
-            }
             if (chaserEnemy)
             {
                 HealthController.health -= chaserEnemy.GetDamage();
@@ -92,6 +82,32 @@ public class PlayerController : MonoBehaviour {
                     Die();
                 }
             }
+        }
+    }
+    IEnumerator OnCollisionEnter2D(Collision2D col)
+    {
+        print("Hit " + col);
+       
+            Projectile missle = col.gameObject.GetComponent<Projectile>();
+            if (missle && missle.tag != "Friendly")
+            {
+                missle.Hit();
+                if (!invincible)
+                {
+                    HealthController.health -= missle.GetDamage();
+                    //invincible = true;
+
+                    if (HealthController.health > 0)
+                    {
+                        invincible = true;
+                        yield return new WaitForSeconds(2);
+                        invincible = false;
+                    }
+                    else
+                    {
+                        Die();
+                    }
+                }
         }
     }
 

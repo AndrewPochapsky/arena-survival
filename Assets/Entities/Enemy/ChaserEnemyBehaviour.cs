@@ -57,6 +57,7 @@ public class ChaserEnemyBehaviour : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D col)
     {
+        print("Hit "+col);
         Projectile missle = col.gameObject.GetComponent<Projectile>();
         if (missle)
         {
