@@ -3,6 +3,9 @@ using System.Collections;
 
 public class ShooterEnemyBehaviour : MonoBehaviour
 {
+    public int speed;
+    private float range;
+    private PlayerController player;
     public int maxHealth = 20;
 
     private int _currentHealth;
@@ -25,7 +28,11 @@ public class ShooterEnemyBehaviour : MonoBehaviour
         }
     }
 
-
+    void Update()
+    {
+        range = Vector2.Distance(transform.position, player.transform.position);
+        transform.position = Vector2.MoveTowards(transform.position, player.transform.position, speed * Time.deltaTime);
+    }
 
 
     
@@ -35,6 +42,7 @@ public class ShooterEnemyBehaviour : MonoBehaviour
     //public AudioClip deathSound;
     void Start()
     {
+        player = GameObject.FindObjectOfType<PlayerController>();
         Init();
         //scoreKeeper = GameObject.Find("Score").GetComponent<ScoreKeeper>();
         
