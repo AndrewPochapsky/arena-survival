@@ -11,11 +11,14 @@ public class WaveSpawner : MonoBehaviour {
     {
         //Only 100% requirements are enemy,count,spawnRate
         public string name;
-        public Transform enemy;
+        public Transform enemy1;
+        public Transform enemy2;
+        public Transform boss;
         public int count;
         public float spawnRate;
     }
     public Transform[] spawnPoints;
+    public Transform[] bossSpawnPoints;
     public Wave[] waves;
     private int nextWave = 0;
 
@@ -68,7 +71,19 @@ public class WaveSpawner : MonoBehaviour {
         state = SpawnState.SPAWNING;
         for (int i = 0; i < _wave.count; i++)
         {
-            SpawnEnemy(_wave.enemy);
+            if(_wave.enemy1 != null)
+            {
+                SpawnEnemy(_wave.enemy1);
+            } 
+            if(_wave.enemy2 != null)
+            {
+                SpawnEnemy(_wave.enemy2);
+            }
+            if(_wave.boss != null)
+            {
+                SpawnBoss(_wave.boss);
+            }
+           
             yield return new WaitForSeconds(1f / _wave.spawnRate);
         }
         state = SpawnState.WAITING;
@@ -83,6 +98,14 @@ public class WaveSpawner : MonoBehaviour {
         Transform _sp = spawnPoints[Random.Range(0, spawnPoints.Length)];
         Instantiate(_enemy, _sp.position, _sp.rotation);
        
+    }
+
+    void SpawnBoss(Transform _boss)
+    {
+        Debug.Log("Spawning boss " + _boss.name);
+
+        Transform _bsp = bossSpawnPoints[Random.Range(0, bossSpawnPoints.Length)];
+        Instantiate(_boss, _bsp.position, _bsp.rotation);
     }
 
     bool EnemyIsAlive()
