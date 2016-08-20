@@ -58,14 +58,4 @@ public class MusicPlayer : MonoBehaviour {
         music.Play();
     }
 
-	// Use this for initialization
-     
-
-    
-	
-	// Update is called once per frame
-	void Update () {
-	
-	}
-    
 }

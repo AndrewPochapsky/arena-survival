@@ -1,8 +1,14 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Projectile : MonoBehaviour {
+public class EnemyProjectile : MonoBehaviour
+{
+    private PlayerController player;
 
+    void Start()
+    {
+        player = GameObject.FindObjectOfType<PlayerController>();
+    }
     public int damage = 100;
 
 

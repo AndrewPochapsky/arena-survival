@@ -3,7 +3,7 @@ using System.Collections;
 using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour {
-
+    private IsClicked isClicked;
     Rigidbody2D rb;
     public int speed;
     public float padding = 1;
@@ -11,13 +11,15 @@ public class PlayerController : MonoBehaviour {
     float xmax;
     public LevelManager levelManager;
     public AudioClip dieSound;
-
+    public int damage = 2;
+    public int skillPoints = 0;
     public bool invincible = false;
     private LivesText livesText;
-   
+    private PlayerProjectile proj;
 	// Use this for initialization
 	void Start () {
-        
+        isClicked = GameObject.FindObjectOfType<IsClicked>();
+        proj = GameObject.FindObjectOfType<PlayerProjectile>();
         rb = GetComponent<Rigidbody2D>();
         float distance = transform.position.z - Camera.main.transform.position.z;
         Vector3 leftMost = Camera.main.ViewportToWorldPoint(new Vector3(0,0,distance));
@@ -55,9 +57,6 @@ public class PlayerController : MonoBehaviour {
         //transform.position = new Vector3(newX, transform.position.y, transform.position.z);
 
 
-        
-
-
     }
 
 
@@ -88,7 +87,7 @@ public class PlayerController : MonoBehaviour {
     {
         print("Hit " + col);
        
-            Projectile missle = col.gameObject.GetComponent<Projectile>();
+            EnemyProjectile missle = col.gameObject.GetComponent<EnemyProjectile>();
             if (missle && missle.tag != "Friendly")
             {
                 missle.Hit();
@@ -118,11 +117,14 @@ public class PlayerController : MonoBehaviour {
         levelManager.LoadLevel("Win");
     }
 
-    //void Respawn()
-    //{
-    //    LivesText.LoseLives();
-    //    HealthText.health = 250f;
-    //    //Destroy(gameObject);
-        
-    //}
+    public void IncreaseDamage(int _damage)
+    {
+        if (skillPoints > 0)
+        {
+            damage += _damage;
+            skillPoints--;
+        }
+    }
+
+    
 }

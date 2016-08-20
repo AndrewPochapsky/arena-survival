@@ -15,8 +15,9 @@ public class Shredder : MonoBehaviour {
 
     void OnCollisionEnter2D(Collision2D col)
     {
-        Projectile missle = col.gameObject.GetComponent<Projectile>();
-        if (missle)
+        EnemyProjectile enemyMissle = col.gameObject.GetComponent<EnemyProjectile>();
+        PlayerProjectile playerMissle = col.gameObject.GetComponent<PlayerProjectile>();
+        if (enemyMissle || playerMissle)
         {
             Destroy(col.gameObject);
         }

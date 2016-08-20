@@ -58,10 +58,10 @@ public class ChaserEnemyBehaviour : MonoBehaviour
     void OnCollisionEnter2D(Collision2D col)
     {
         
-        Projectile missle = col.gameObject.GetComponent<Projectile>();
+        PlayerProjectile missle = col.gameObject.GetComponent<PlayerProjectile>();
         if (missle)
         {
-            currentHealth -= missle.GetDamage();
+            currentHealth -= player.damage;
             missle.Hit();
             if (currentHealth <= 0)
             {
