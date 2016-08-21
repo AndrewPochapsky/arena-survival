@@ -5,7 +5,7 @@ using UnityEngine.UI;
 public class PlayerController : MonoBehaviour {
     private IsClicked isClicked;
     Rigidbody2D rb;
-    public int speed;
+    public int speed = 5;
     public float padding = 1;
     float xmin;
     float xmax;
@@ -124,6 +124,14 @@ public class PlayerController : MonoBehaviour {
             skillPoints--;
         }
     }
+    public void IncreaseSpeed(int _speed)
+    {
+        if (skillPoints > 0)
+        {
+            speed += _speed;
+            skillPoints--;
+        }
+    }
 
-    
+
 }

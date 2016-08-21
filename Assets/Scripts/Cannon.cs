@@ -56,4 +56,23 @@ public class Cannon : MonoBehaviour {
         angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg + (int)spriteRotation;
         transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
     }
+
+    public void IncreaseShotSpeed(int _shotSpeed)
+    {
+        if (PlayerController.skillPoints > 0)
+        {
+            speedOfLaser += _shotSpeed;
+            PlayerController.skillPoints--;
+        }
+    }
+
+    public void IncreaseFireRate(float _fireRate)
+    {
+        if (PlayerController.skillPoints > 0)
+        {
+            firingRate += _fireRate;
+            PlayerController.skillPoints--;
+        }
+    }
+
 }
