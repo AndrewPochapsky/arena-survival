@@ -39,7 +39,7 @@ public class WaveSpawner : MonoBehaviour {
     
     void Update()
     {
-        Debug.Log("Skillpoints: " + player.skillPoints);
+        Debug.Log("Skillpoints: " + PlayerController.skillPoints);
         if (state == SpawnState.WAITING)
         {
             if (!EnemyIsAlive())
@@ -130,8 +130,8 @@ public class WaveSpawner : MonoBehaviour {
         Debug.Log("Wave completed!");   
         state = SpawnState.COUNTING;
         waveCountDown = timeBetweenWaves;
-        player.skillPoints++;
-        Debug.Log("Skillpoints: " + player.skillPoints);
+        PlayerController.skillPoints++;
+        Debug.Log("Skillpoints: " + PlayerController.skillPoints);
         if(nextWave + 1> waves.Length-1)
         {
             Debug.Log("Completed all waves! Looping...");

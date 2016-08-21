@@ -12,7 +12,7 @@ public class PlayerController : MonoBehaviour {
     public LevelManager levelManager;
     public AudioClip dieSound;
     public int damage = 2;
-    public int skillPoints = 0;
+    public static int skillPoints = 0;
     public bool invincible = false;
     private LivesText livesText;
     private PlayerProjectile proj;
@@ -55,7 +55,6 @@ public class PlayerController : MonoBehaviour {
         //restrict the player to the gamespace
         //float newX = Mathf.Clamp(transform.position.x, xmin, xmax);
         //transform.position = new Vector3(newX, transform.position.y, transform.position.z);
-
 
     }
 
