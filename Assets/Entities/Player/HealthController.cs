@@ -29,7 +29,14 @@ public class HealthController : MonoBehaviour
         health = 10f;
     }
 
-
+    public void IncreaseHealth(int _health)
+    {
+        if (PlayerController.skillPoints > 0)
+        {
+            health += _health;
+            PlayerController.skillPoints--;
+        }
+    }
 
 
 

@@ -133,5 +133,13 @@ public class PlayerController : MonoBehaviour {
         }
     }
 
+    public void IncreaseHealth(int _health)
+    {
+        if (skillPoints > 0)
+        {
+            HealthController.health += _health;
+           skillPoints--;
+        }
+    }
 
 }
