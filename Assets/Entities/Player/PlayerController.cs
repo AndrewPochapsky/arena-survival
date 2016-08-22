@@ -66,7 +66,23 @@ public class PlayerController : MonoBehaviour {
         {
             
             ChaserEnemyBehaviour chaserEnemy = col.gameObject.GetComponent<ChaserEnemyBehaviour>();
-            if (chaserEnemy)
+            ChargerEnemy chargerEnemy = col.gameObject.GetComponent<ChargerEnemy>();
+            if (chargerEnemy)
+            {
+                HealthController.health -= chargerEnemy.GetDamage();
+
+                if (HealthController.health > 0)
+                {
+                    invincible = true;
+                    yield return new WaitForSeconds(2);
+                    invincible = false;
+                }
+                else
+                {
+                    Die();
+                }
+            }
+            else if (chaserEnemy)
             {
                 HealthController.health -= chaserEnemy.GetDamage();
                 if (HealthController.health > 0)
@@ -79,6 +95,7 @@ public class PlayerController : MonoBehaviour {
                 {
                     Die();
                 }
+            
             }
         }
     }
