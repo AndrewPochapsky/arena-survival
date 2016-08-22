@@ -39,7 +39,7 @@ public class ChargerEnemy: MonoBehaviour
     //public AudioClip deathSound;
 
     public float damage = 4f;
-
+   public bool spotted = false;
     public float GetDamage()
     {
         return damage;
@@ -57,20 +57,29 @@ public class ChargerEnemy: MonoBehaviour
         }
     }
 
-    //void Update()
-    //{
-    //    //ChasePlayer();
-    //}
-    Vector3 previousGood = Vector3.zero;
+   
 
     void Update()
     {
-        //    Ray ray = new Ray(transform.position, Vector2.left);
-        //    Debug.DrawLine(transform.position, transform.position-Vector3.up*maxRayDistance, Color.red);
+        //RaycastHit hit;
+        //(Physics2D.Raycast(transform.position, transform.up, maxRayDistance);
 
-        Physics2D.Raycast(transform.position, transform.up, maxRayDistance);
-        Vector3 up = transform.TransformDirection(Vector3.up) * maxRayDistance;
-        Debug.DrawRay(transform.position,up, Color.green);
+        RaycastHit hit;
+        Ray ray = new Ray(transform.position,transform.TransformDirection(Vector2.up));
+
+            
+        Debug.DrawRay(transform.position,transform.TransformDirection(Vector2.up) * maxRayDistance, Color.green);
+
+        if (Physics.Raycast(ray, out hit, maxRayDistance))
+        {
+            Debug.Log("Hit");
+        }
+
+        //if (Physics.Raycast(ray, out hit, maxRayDistance))
+        //{
+        //    Debug.Log("Hit");
+        //}
+
     }
 
 
