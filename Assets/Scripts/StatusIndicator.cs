@@ -3,6 +3,8 @@ using UnityEngine.UI;
 
 public class StatusIndicator : MonoBehaviour {
 
+   
+
     [SerializeField]
     private RectTransform healthBarRect;
     [SerializeField]
@@ -10,12 +12,14 @@ public class StatusIndicator : MonoBehaviour {
 
     Quaternion rotation;
     void Awake()
-    {
-        rotation = transform.rotation;
+    {     
+         rotation = transform.rotation;      
     }
+   
     void LateUpdate()
     {
-        transform.rotation = rotation;
+          transform.rotation = rotation;
+       
     }
 
     void Start()

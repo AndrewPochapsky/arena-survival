@@ -3,16 +3,10 @@ using System.Collections;
 
 public class ChargerEnemy: MonoBehaviour
 {
-   
-
-
-
-
-
 
     public int maxRayDistance = 25;
     private PlayerController player;
-    public int maxHealth = 10;
+    public int maxHealth = 25;
 
     private int _currentHealth;
     public int currentHealth
@@ -39,7 +33,7 @@ public class ChargerEnemy: MonoBehaviour
     //public AudioClip deathSound;
 
     public float damage = 4f;
-   public bool spotted = false;
+    public bool spotted = false;
     public float GetDamage()
     {
         return damage;
