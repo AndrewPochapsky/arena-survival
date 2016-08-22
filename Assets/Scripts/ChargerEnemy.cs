@@ -3,7 +3,8 @@ using System.Collections;
 
 public class ChargerEnemy: MonoBehaviour
 {
-
+    private Rigidbody2D rb;
+    private Vector3 playerPos;
     public int maxRayDistance = 25;
     private PlayerController player;
     public int maxHealth = 25;
@@ -42,6 +43,7 @@ public class ChargerEnemy: MonoBehaviour
     void Start()
     {
         Init();
+        rb = GetComponent<Rigidbody2D>();
         player = GameObject.FindObjectOfType<PlayerController>();
         scoreKeeper = GameObject.Find("Score").GetComponent<ScoreKeeper>();
 
@@ -55,29 +57,20 @@ public class ChargerEnemy: MonoBehaviour
 
     void Update()
     {
-        //RaycastHit hit;
-        //(Physics2D.Raycast(transform.position, transform.up, maxRayDistance);
-
-        RaycastHit hit;
-        Ray ray = new Ray(transform.position,transform.TransformDirection(Vector2.up));
-
-            
-        Debug.DrawRay(transform.position,transform.TransformDirection(Vector2.up) * maxRayDistance, Color.green);
-
-        if (Physics.Raycast(ray, out hit, maxRayDistance))
+        if (!spotted)
         {
-            Debug.Log("Hit");
+             DetectPlayerPosition();
         }
-
-        //if (Physics.Raycast(ray, out hit, maxRayDistance))
-        //{
-        //    Debug.Log("Hit");
-        //}
+       
+       else
+        {
+            Charge();
+        }
 
     }
 
 
-    void OnCollisionEnter2D(Collision2D col)
+    void OnTriggerEnter2D(Collider2D col)
     {
 
         PlayerProjectile missle = col.gameObject.GetComponent<PlayerProjectile>();
@@ -104,18 +97,27 @@ public class ChargerEnemy: MonoBehaviour
         //AudioSource.PlayClipAtPoint(deathSound, transform.position);
     }
 
-    void ChasePlayer()
+    void DetectPlayerPosition()
     {
-        if (player != null)
-        {
-            //LookAtPlayer
-            Vector3 dir = player.transform.position - transform.position;
-            float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
-            transform.rotation = Quaternion.AngleAxis(angle - 90, Vector3.forward);
-            range = Vector2.Distance(transform.position, player.transform.position);
-            transform.position = Vector2.MoveTowards(transform.position, player.transform.position, speed * Time.deltaTime);
-        }
+        RaycastHit hit;
+        Ray ray = new Ray(transform.position, transform.TransformDirection(Vector2.up));
 
+
+        Debug.DrawRay(transform.position, transform.TransformDirection(Vector2.up) * maxRayDistance, Color.green);
+
+        if (Physics.Raycast(ray, out hit, maxRayDistance))
+        {
+            playerPos = hit.transform.position;
+            spotted = true;   
+        }
+    }
+
+    void Charge()
+    {
+        //transform.position = Vector2.MoveTowards(transform.position, playerPos, speed * Time.deltaTime);
+        rb.AddForce((playerPos - transform.position) * speed);
+        //spotted = false;
 
     }
+
 }

@@ -59,13 +59,12 @@ public class PlayerController : MonoBehaviour {
     }
 
 
-
-    IEnumerator OnCollisionStay2D(Collision2D col)
+    IEnumerator OnTriggerStay2D(Collider2D col)
     {
         if (!invincible)
         {
-            
-            ChaserEnemyBehaviour chaserEnemy = col.gameObject.GetComponent<ChaserEnemyBehaviour>();
+
+          
             ChargerEnemy chargerEnemy = col.gameObject.GetComponent<ChargerEnemy>();
             if (chargerEnemy)
             {
@@ -82,7 +81,19 @@ public class PlayerController : MonoBehaviour {
                     Die();
                 }
             }
-            else if (chaserEnemy)
+           
+
+            
+        }
+    }
+
+    IEnumerator OnCollisionStay2D(Collision2D col)
+    {
+        if (!invincible)
+        {
+            
+            ChaserEnemyBehaviour chaserEnemy = col.gameObject.GetComponent<ChaserEnemyBehaviour>();
+            if (chaserEnemy)
             {
                 HealthController.health -= chaserEnemy.GetDamage();
                 if (HealthController.health > 0)
