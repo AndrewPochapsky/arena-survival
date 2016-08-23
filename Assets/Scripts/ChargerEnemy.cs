@@ -3,9 +3,11 @@ using System.Collections;
 
 public class ChargerEnemy: MonoBehaviour
 {
+    bool noMore = false;
+    float chargeTime= 5f;
     private Rigidbody2D rb;
     private Vector3 playerPos;
-    public int maxRayDistance = 25;
+    public int maxRayDistance = 100;
     private PlayerController player;
     public int maxHealth = 25;
 
@@ -39,14 +41,17 @@ public class ChargerEnemy: MonoBehaviour
     {
         return damage;
     }
-
-    void Start()
+    void Awake()
     {
-        Init();
+
         rb = GetComponent<Rigidbody2D>();
         player = GameObject.FindObjectOfType<PlayerController>();
         scoreKeeper = GameObject.Find("Score").GetComponent<ScoreKeeper>();
-
+    }
+    void Start()
+    {
+     
+        Init();
         if (statusIndicator != null)
         {
             statusIndicator.SetHealth(currentHealth, maxHealth);
@@ -59,14 +64,12 @@ public class ChargerEnemy: MonoBehaviour
     {
         if (!spotted)
         {
-             DetectPlayerPosition();
+            DetectPlayerPosition();
         }
-       
-       else
+        else if (spotted)
         {
             Charge();
         }
-
     }
 
 
@@ -98,26 +101,33 @@ public class ChargerEnemy: MonoBehaviour
     }
 
     void DetectPlayerPosition()
-    {
-        RaycastHit hit;
+    {   
         Ray ray = new Ray(transform.position, transform.TransformDirection(Vector2.up));
-
+        RaycastHit hit;
 
         Debug.DrawRay(transform.position, transform.TransformDirection(Vector2.up) * maxRayDistance, Color.green);
 
         if (Physics.Raycast(ray, out hit, maxRayDistance))
         {
+            print("player hit with raycast");
             playerPos = hit.transform.position;
-            spotted = true;   
+            spotted = true;  
         }
     }
 
     void Charge()
-    {
-        //transform.position = Vector2.MoveTowards(transform.position, playerPos, speed * Time.deltaTime);
-        rb.AddForce((playerPos - transform.position) * speed);
-        //spotted = false;
+    { 
+        print("Charging");
+        rb.AddForce((playerPos -transform.position) * speed);
+        rb.angularDrag = 0.05f;
+        Invoke("Transition", 5f);  
+    }
 
+   void Transition()
+    {
+        spotted = false;
+        rb.velocity = Vector2.zero;
+        rb.angularDrag = 0.05f;
     }
 
 }
