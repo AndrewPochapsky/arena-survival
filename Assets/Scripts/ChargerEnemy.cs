@@ -130,4 +130,6 @@ public class ChargerEnemy: MonoBehaviour
         rb.angularDrag = 0.05f;
     }
 
+  
+
 }

@@ -13,6 +13,7 @@ public class WaveSpawner : MonoBehaviour {
         public string name;
         public Transform enemy1;
         public Transform enemy2;
+        public Transform enemy3;
         public Transform boss;
         public int count;
         public float spawnRate;
@@ -81,7 +82,11 @@ public class WaveSpawner : MonoBehaviour {
             {
                 SpawnEnemy(_wave.enemy2);
             }
-            if(_wave.boss != null)
+            if (_wave.enemy3 != null)
+            {
+                SpawnEnemy(_wave.enemy3);
+            }
+            if (_wave.boss != null)
             {
                 SpawnBoss(_wave.boss);
             }

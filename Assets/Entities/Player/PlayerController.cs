@@ -52,6 +52,10 @@ public class PlayerController : MonoBehaviour {
         {
             transform.Translate(Vector3.down * speed * Time.deltaTime);
         }
+        if (Input.GetKey(KeyCode.Space))
+        {
+            Dash();
+        }
         //restrict the player to the gamespace
         //float newX = Mathf.Clamp(transform.position.x, xmin, xmax);
         //transform.position = new Vector3(newX, transform.position.y, transform.position.z);
@@ -169,5 +173,12 @@ public class PlayerController : MonoBehaviour {
            skillPoints--;
         }
     }
+
+    void Dash()
+    {
+       //Maybe added later on
+
+    }
+
 
 }
