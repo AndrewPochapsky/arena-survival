@@ -7,8 +7,8 @@ public class HealthController : MonoBehaviour
 
 
     public Text healthText;
-
-    public static float health = 10f;
+    public static float maxHealth = 10f;
+    public static float currentHealth = 10f;
 
 
     void Start()
@@ -20,24 +20,25 @@ public class HealthController : MonoBehaviour
     void Update()
     {
 
-        healthText.text = "Health: " + health.ToString();
+        healthText.text = "Health: " + currentHealth.ToString()+"/"+maxHealth.ToString();
 
     }
 
     public static void ResetHealth()
     {
-        health = 10f;
+        maxHealth = 10f;
+        currentHealth = 10f;
     }
 
-    public void IncreaseHealth(int _health)
-    {
-        if (PlayerController.skillPoints > 0)
-        {
-            health += _health;
-            PlayerController.skillPoints--;
-        }
-    }
-
+    //public void IncreaseCurrentHealth(int _health)
+    //{
+    //    if (PlayerController.skillPoints > 0)
+    //    {
+    //        currentHealth += _health;
+    //        PlayerController.skillPoints--;
+    //    }
+    //}
+    //public void IncreaeMaxHe
 
 
 }

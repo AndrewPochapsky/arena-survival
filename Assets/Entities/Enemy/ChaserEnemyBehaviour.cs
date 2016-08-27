@@ -3,7 +3,8 @@ using System.Collections;
 
 public class ChaserEnemyBehaviour : MonoBehaviour
 {
-    
+    public HealthPack healthPack;
+    public float dropRate = 0.33f;
     private PlayerController player;
     public int maxHealth=10;
 
@@ -78,6 +79,10 @@ public class ChaserEnemyBehaviour : MonoBehaviour
     void Die()
     {
         Destroy(gameObject);
+        if(Random.Range(0f,1f) <= dropRate)
+        {
+           Instantiate(healthPack, new Vector3(transform.position.x,transform.position.y,transform.position.z),Quaternion.identity);
+        }
         scoreKeeper.Score(scoreValue);
         //AudioSource.PlayClipAtPoint(deathSound, transform.position);
     }

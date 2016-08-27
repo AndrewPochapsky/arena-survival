@@ -3,6 +3,8 @@ using System.Collections;
 
 public class ShooterEnemyBehaviour : MonoBehaviour
 {
+    public float dropRate = 0.33f;
+    public HealthPack healthPack;
     public int speed;
     private float range;
     private PlayerController player;
@@ -73,6 +75,10 @@ public class ShooterEnemyBehaviour : MonoBehaviour
     void Die()
     {
         Destroy(gameObject);
+        if (Random.Range(0f, 1f) <= dropRate)
+        {
+            Instantiate(healthPack, new Vector3(transform.position.x, transform.position.y, transform.position.z), Quaternion.identity);
+        }
         //scoreKeeper.Score(scoreValue);
         //AudioSource.PlayClipAtPoint(deathSound, transform.position);
     }

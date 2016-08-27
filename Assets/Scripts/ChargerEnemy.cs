@@ -3,6 +3,9 @@ using System.Collections;
 
 public class ChargerEnemy: MonoBehaviour
 {
+
+    public float dropRate = 0.33f;
+    public HealthPack healthPack;
     bool noMore = false;
     float chargeTime= 5f;
     private Rigidbody2D rb;
@@ -96,6 +99,10 @@ public class ChargerEnemy: MonoBehaviour
     void Die()
     {
         Destroy(gameObject);
+        if (Random.Range(0f, 1f) <= dropRate)
+        {
+            Instantiate(healthPack, new Vector3(transform.position.x, transform.position.y, transform.position.z), Quaternion.identity);
+        }
         scoreKeeper.Score(scoreValue);
         //AudioSource.PlayClipAtPoint(deathSound, transform.position);
     }

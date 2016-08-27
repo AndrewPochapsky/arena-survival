@@ -3,12 +3,9 @@ using System.Collections;
 using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour {
-    private IsClicked isClicked;
     Rigidbody2D rb;
-    public int speed = 5;
-    public float padding = 1;
-    float xmin;
-    float xmax;
+    
+    public int speed = 5;    
     public LevelManager levelManager;
     public AudioClip dieSound;
     public int damage = 2;
@@ -18,14 +15,13 @@ public class PlayerController : MonoBehaviour {
     private PlayerProjectile proj;
 	// Use this for initialization
 	void Start () {
-        isClicked = GameObject.FindObjectOfType<IsClicked>();
+        
         proj = GameObject.FindObjectOfType<PlayerProjectile>();
         rb = GetComponent<Rigidbody2D>();
         float distance = transform.position.z - Camera.main.transform.position.z;
         Vector3 leftMost = Camera.main.ViewportToWorldPoint(new Vector3(0,0,distance));
         Vector3 rightMost = Camera.main.ViewportToWorldPoint(new Vector3(1, 0, distance));
-        xmin = leftMost.x + padding;
-        xmax = rightMost.x - padding;
+       
         LivesText.ResetLives();
         HealthController.ResetHealth();
 
@@ -56,25 +52,19 @@ public class PlayerController : MonoBehaviour {
         {
             Dash();
         }
-        //restrict the player to the gamespace
-        //float newX = Mathf.Clamp(transform.position.x, xmin, xmax);
-        //transform.position = new Vector3(newX, transform.position.y, transform.position.z);
-
     }
 
 
     IEnumerator OnTriggerStay2D(Collider2D col)
     {
         if (!invincible)
-        {
-
-          
+        {  
             ChargerEnemy chargerEnemy = col.gameObject.GetComponent<ChargerEnemy>();
             if (chargerEnemy)
             {
-                HealthController.health -= chargerEnemy.GetDamage();
+                HealthController.currentHealth -= chargerEnemy.GetDamage();
 
-                if (HealthController.health > 0)
+                if (HealthController.currentHealth> 0)
                 {
                     invincible = true;
                     yield return new WaitForSeconds(2);
@@ -99,8 +89,8 @@ public class PlayerController : MonoBehaviour {
             ChaserEnemyBehaviour chaserEnemy = col.gameObject.GetComponent<ChaserEnemyBehaviour>();
             if (chaserEnemy)
             {
-                HealthController.health -= chaserEnemy.GetDamage();
-                if (HealthController.health > 0)
+                HealthController.currentHealth -= chaserEnemy.GetDamage();
+                if (HealthController.currentHealth> 0)
                 {
                     invincible = true;
                     yield return new WaitForSeconds(2);
@@ -117,17 +107,17 @@ public class PlayerController : MonoBehaviour {
     IEnumerator OnCollisionEnter2D(Collision2D col)
     {
         print("Hit " + col);
-       
+        
             EnemyProjectile missle = col.gameObject.GetComponent<EnemyProjectile>();
             if (missle && missle.tag != "Friendly")
             {
                 missle.Hit();
                 if (!invincible)
                 {
-                    HealthController.health -= missle.GetDamage();
+                    HealthController.currentHealth -= missle.GetDamage();
                     //invincible = true;
 
-                    if (HealthController.health > 0)
+                    if (HealthController.currentHealth > 0)
                     {
                         invincible = true;
                         yield return new WaitForSeconds(2);
@@ -138,6 +128,16 @@ public class PlayerController : MonoBehaviour {
                         Die();
                     }
                 }
+        }
+    }
+
+    void OnTriggerEnter2D(Collider2D col)
+    {
+        HealthPack healthPack = col.gameObject.GetComponent<HealthPack>();
+        if (healthPack && healthPack.canHeal)
+        {
+            HealthController.currentHealth += healthPack.amountOfHealing;
+            Destroy(col.gameObject);
         }
     }
 
@@ -165,11 +165,11 @@ public class PlayerController : MonoBehaviour {
         }
     }
 
-    public void IncreaseHealth(int _health)
+    public void IncreaseMaxHealth(int _health)
     {
         if (skillPoints > 0)
         {
-            HealthController.health += _health;
+            HealthController.maxHealth += _health;
            skillPoints--;
         }
     }
@@ -179,6 +179,7 @@ public class PlayerController : MonoBehaviour {
        //Maybe added later on
 
     }
+
 
 
 }
