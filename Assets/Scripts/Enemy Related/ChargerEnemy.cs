@@ -11,7 +11,6 @@ public class ChargerEnemy: MonoBehaviour
     private Rigidbody2D rb;
     private Vector3 playerPos;
     public int maxRayDistance = 100;
-    private PlayerController player;
     public int maxHealth = 25;
 
     private int _currentHealth;
@@ -48,7 +47,7 @@ public class ChargerEnemy: MonoBehaviour
     {
 
         rb = GetComponent<Rigidbody2D>();
-        player = GameObject.FindObjectOfType<PlayerController>();
+        
         scoreKeeper = GameObject.Find("Score").GetComponent<ScoreKeeper>();
     }
     void Start()
@@ -82,7 +81,7 @@ public class ChargerEnemy: MonoBehaviour
         PlayerProjectile missle = col.gameObject.GetComponent<PlayerProjectile>();
         if (missle)
         {
-            currentHealth -= player.damage;
+            currentHealth -= Player.damage;
             missle.Hit();
             if (currentHealth <= 0)
             {

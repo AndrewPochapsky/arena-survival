@@ -13,6 +13,6 @@ public class SkillText : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        skillText.text = "Skillpoints: " + PlayerController.skillPoints.ToString();
+        skillText.text = "Skillpoints: " + Player.skillPoints.ToString();
 	}
 }

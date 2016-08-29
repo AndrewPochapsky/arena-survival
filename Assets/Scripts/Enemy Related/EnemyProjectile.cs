@@ -3,11 +3,11 @@ using System.Collections;
 
 public class EnemyProjectile : MonoBehaviour
 {
-    private PlayerController player;
+    private Player player;
 
     void Start()
     {
-        player = GameObject.FindObjectOfType<PlayerController>();
+        player = GameObject.FindObjectOfType<Player>();
     }
     public int damage = 100;
 

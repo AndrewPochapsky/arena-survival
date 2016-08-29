@@ -7,7 +7,7 @@ public class ShooterEnemyBehaviour : MonoBehaviour
     public HealthPack healthPack;
     public int speed;
     private float range;
-    private PlayerController player;
+    private Player player;
     public int maxHealth = 20;
 
     private int _currentHealth;
@@ -23,6 +23,7 @@ public class ShooterEnemyBehaviour : MonoBehaviour
 
     public void Init()
     {
+        player = GameObject.FindObjectOfType<Player>();
         currentHealth = maxHealth;
         if (statusIndicator != null)
         {
@@ -44,7 +45,7 @@ public class ShooterEnemyBehaviour : MonoBehaviour
     //public AudioClip deathSound;
     void Start()
     {
-        player = GameObject.FindObjectOfType<PlayerController>();
+       
         Init();
         //scoreKeeper = GameObject.Find("Score").GetComponent<ScoreKeeper>();
         
@@ -54,7 +55,7 @@ public class ShooterEnemyBehaviour : MonoBehaviour
         PlayerProjectile missle = col.gameObject.GetComponent<PlayerProjectile>();
         if (missle)
         {
-            currentHealth -= player.damage;
+            currentHealth -= Player.damage;
             missle.Hit();
             if (currentHealth <= 0)
             {

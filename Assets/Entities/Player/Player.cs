@@ -2,17 +2,27 @@
 using System.Collections;
 using UnityEngine.UI;
 
-public class PlayerController : MonoBehaviour {
+public class Player : MonoBehaviour {
     Rigidbody2D rb;
     
-    public int speed = 5;    
+   
     public LevelManager levelManager;
     public AudioClip dieSound;
-    public int damage = 2;
-    public static int skillPoints = 0;
+   
     public bool invincible = false;
+
     private LivesText livesText;
     private PlayerProjectile proj;
+
+
+    public static float speedOfLaser = 10;
+    public static float firingRate = 0.5f;
+    public static int damage = 2;
+    public static int skillPoints = 0;
+    public static int speed = 5;
+    public int maxDamageUpgrades = 5;
+    public int currentDamageUpgrades = 0;
+
 	// Use this for initialization
 	void Start () {
         
@@ -47,10 +57,6 @@ public class PlayerController : MonoBehaviour {
         if (Input.GetKey(KeyCode.S))
         {
             transform.Translate(Vector3.down * speed * Time.deltaTime);
-        }
-        if (Input.GetKey(KeyCode.Space))
-        {
-            Dash();
         }
     }
 
@@ -147,38 +153,7 @@ public class PlayerController : MonoBehaviour {
         AudioSource.PlayClipAtPoint(dieSound, transform.position);
         levelManager.LoadLevel("Win");
     }
-
-    public void IncreaseDamage(int _damage)
-    {
-        if (skillPoints > 0)
-        {
-            damage += _damage;
-            skillPoints--;
-        }
-    }
-    public void IncreaseSpeed(int _speed)
-    {
-        if (skillPoints > 0)
-        {
-            speed += _speed;
-            skillPoints--;
-        }
-    }
-
-    public void IncreaseMaxHealth(int _health)
-    {
-        if (skillPoints > 0)
-        {
-            HealthController.maxHealth += _health;
-           skillPoints--;
-        }
-    }
-
-    void Dash()
-    {
-       //Maybe added later on
-
-    }
+    
 
 
 

@@ -5,9 +5,8 @@ public class ChaserEnemyBehaviour : MonoBehaviour
 {
     public HealthPack healthPack;
     public float dropRate = 0.33f;
-    private PlayerController player;
     public int maxHealth=10;
-
+    private Player player;
     private int _currentHealth;
     public int currentHealth
     {
@@ -41,8 +40,8 @@ public class ChaserEnemyBehaviour : MonoBehaviour
 
     void Start()
     {
+        player = GameObject.FindObjectOfType<Player>();
         Init();
-        player = GameObject.FindObjectOfType<PlayerController>();
         scoreKeeper = GameObject.Find("Score").GetComponent<ScoreKeeper>();
 
         if (statusIndicator != null)
@@ -62,7 +61,7 @@ public class ChaserEnemyBehaviour : MonoBehaviour
         PlayerProjectile missle = col.gameObject.GetComponent<PlayerProjectile>();
         if (missle)
         {
-            currentHealth -= player.damage;
+            currentHealth -= Player.damage;
             missle.Hit();
             if (currentHealth <= 0)
             {

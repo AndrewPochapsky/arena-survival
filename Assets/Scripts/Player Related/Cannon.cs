@@ -18,8 +18,7 @@ public class Cannon : MonoBehaviour {
     private Transform myTransform;
     private GameObject player;
     public GameObject laserPrefab;
-    public float speedOfLaser;
-    public float firingRate=0.5f;
+    
     private float angle;
     public GameObject cannonExit;
     private float nextFire = 0.0f;
@@ -37,7 +36,7 @@ public class Cannon : MonoBehaviour {
 
         if (Input.GetMouseButton(0)&&Time.time > nextFire)
         {
-            nextFire = Time.time + firingRate;
+            nextFire = Time.time + Player.firingRate;
             Shoot();
         }
     }
@@ -45,7 +44,7 @@ public class Cannon : MonoBehaviour {
     void Shoot()
     {
         GameObject beam = Instantiate(laserPrefab, new Vector3(cannonExit.transform.position.x, cannonExit.transform.position.y, cannonExit.transform.position.z), Quaternion.identity) as GameObject;
-        beam.GetComponent<Rigidbody2D>().velocity = (direction * speedOfLaser);
+        beam.GetComponent<Rigidbody2D>().velocity = (direction * Player.speedOfLaser);
         //AudioSource.PlayClipAtPoint(fireSound, transform.position);
     }
 
@@ -55,24 +54,6 @@ public class Cannon : MonoBehaviour {
         direction = (mousePosition - (Vector2)transform.position).normalized;
         angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg + (int)spriteRotation;
         transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
-    }
-
-    public void IncreaseShotSpeed(int _shotSpeed)
-    {
-        if (PlayerController.skillPoints > 0)
-        {
-            speedOfLaser += _shotSpeed;
-            PlayerController.skillPoints--;
-        }
-    }
-
-    public void IncreaseFireRate(float _fireRate)
-    {
-        if (PlayerController.skillPoints > 0)
-        {
-            firingRate += _fireRate;
-            PlayerController.skillPoints--;
-        }
     }
 
 }

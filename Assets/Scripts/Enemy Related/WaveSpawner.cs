@@ -25,12 +25,12 @@ public class WaveSpawner : MonoBehaviour {
 
     public float timeBetweenWaves = 5f;
     public float waveCountDown;
-    private PlayerController player;
+    private Player player;
     private float searchCountDown = 1f;
     private SpawnState state = SpawnState.COUNTING;
     void Start()
     {
-        player = GameObject.FindObjectOfType<PlayerController>();
+        player = GameObject.FindObjectOfType<Player>();
         waveCountDown = timeBetweenWaves;
         if (spawnPoints.Length == 0)
         {
@@ -40,7 +40,7 @@ public class WaveSpawner : MonoBehaviour {
     
     void Update()
     {
-        Debug.Log("Skillpoints: " + PlayerController.skillPoints);
+        Debug.Log("Skillpoints: " + Player.skillPoints);
         if (state == SpawnState.WAITING)
         {
             if (!EnemyIsAlive())
@@ -135,8 +135,8 @@ public class WaveSpawner : MonoBehaviour {
         Debug.Log("Wave completed!");   
         state = SpawnState.COUNTING;
         waveCountDown = timeBetweenWaves;
-        PlayerController.skillPoints++;
-        Debug.Log("Skillpoints: " + PlayerController.skillPoints);
+        Player.skillPoints++;
+        Debug.Log("Skillpoints: " + Player.skillPoints);
         if(nextWave + 1> waves.Length-1)
         {
             Debug.Log("Completed all waves! Looping...");

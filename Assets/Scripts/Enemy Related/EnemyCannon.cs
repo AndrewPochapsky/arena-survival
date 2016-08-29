@@ -2,7 +2,7 @@
 using System.Collections;
 
 public class EnemyCannon : MonoBehaviour {
-    private PlayerController player;
+    private Player player;
     Vector3 dir;
     public GameObject enemyLaserPrefab, cannonExit;
     public float speedOfLaser;
@@ -10,7 +10,7 @@ public class EnemyCannon : MonoBehaviour {
     public float nextFire = 0.5f;
     // Use this for initialization
     void Start () {
-        player = GameObject.FindObjectOfType<PlayerController>();
+        player = GameObject.FindObjectOfType<Player>();
 	}
 	
 	// Update is called once per frame
