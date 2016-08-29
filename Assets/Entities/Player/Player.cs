@@ -20,11 +20,15 @@ public class Player : MonoBehaviour {
     public static int damage = 2;
     public static int skillPoints = 0;
     public static int speed = 5;
-    public int maxDamageUpgrades = 5;
-    public int currentDamageUpgrades = 0;
+    public static int maxUpgrades = 5;
+    public static int currentDamageUpgrades = 0;
+    public static int currentMaxHealthUpgrades = 0;
+    public static int currentFiringRateUpgrades = 0;
+    public static int currentShotSpeedUpgrades = 0;
+    public static int currentSpeedUpgrades = 0;
 
-	// Use this for initialization
-	void Start () {
+    // Use this for initialization
+    void Start () {
         
         proj = GameObject.FindObjectOfType<PlayerProjectile>();
         rb = GetComponent<Rigidbody2D>();
