@@ -46,5 +46,17 @@ public class HealthController : MonoBehaviour
         healthText.text = _current + "/" + _max + " HP";
     }
 
+    public void IncreaseMaxHealth(int _health)
+    {
+        if (Player.skillPoints > 0 && Player.currentMaxHealthUpgrades < Player.maxUpgrades)
+        {
+
+            Player.currentMaxHealthUpgrades++;
+            maxHealth += _health;
+            SetHealth(currentHealth, maxHealth);
+            print("done");
+            Player.skillPoints--;
+        }
+    }
 
 }
