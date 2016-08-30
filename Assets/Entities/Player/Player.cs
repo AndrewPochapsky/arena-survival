@@ -16,7 +16,7 @@ public class Player : MonoBehaviour {
 
 
     public static float speedOfLaser = 10;
-    public static float firingRate = 0.5f;
+    public static float firingRate = 1f;
     public static int damage = 2;
     public static int skillPoints = 0;
     public static int speed = 5;
