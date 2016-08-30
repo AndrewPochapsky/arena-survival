@@ -37,9 +37,9 @@ public class ChargerEnemy: MonoBehaviour
     private ScoreKeeper scoreKeeper;
     //public AudioClip deathSound;
 
-    public float damage = 4f;
+    public int damage = 4;
     public bool spotted = false;
-    public float GetDamage()
+    public int GetDamage()
     {
         return damage;
     }

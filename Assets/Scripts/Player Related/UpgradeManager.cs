@@ -3,8 +3,14 @@ using System.Collections;
 using UnityEngine.UI;
 
 public class UpgradeManager : MonoBehaviour {
-
+    private HealthController healthController;
     public Text damageText, speedText, healthText, firingRateText, shotSpeedText;
+
+    void Start()
+    {
+        healthController = GameObject.FindObjectOfType<HealthController>();
+    }
+
 
 	// Update is called once per frame
 	void Update () {
@@ -39,7 +45,7 @@ public class UpgradeManager : MonoBehaviour {
         if (Player.skillPoints > 0 && Player.currentMaxHealthUpgrades < Player.maxUpgrades)
         {
             Player.currentMaxHealthUpgrades++;
-            HealthController.maxHealth += _health;
+            healthController.maxHealth += _health;
             Player.skillPoints--;
         }
     }

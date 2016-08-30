@@ -13,7 +13,7 @@ public class Player : MonoBehaviour {
 
     private LivesText livesText;
     private PlayerProjectile proj;
-
+    private HealthController healthController;
 
     public static float speedOfLaser = 10;
     public static float firingRate = 1f;
@@ -35,9 +35,10 @@ public class Player : MonoBehaviour {
         float distance = transform.position.z - Camera.main.transform.position.z;
         Vector3 leftMost = Camera.main.ViewportToWorldPoint(new Vector3(0,0,distance));
         Vector3 rightMost = Camera.main.ViewportToWorldPoint(new Vector3(1, 0, distance));
-       
+
+        healthController = GameObject.FindObjectOfType<HealthController>();
         LivesText.ResetLives();
-        HealthController.ResetHealth();
+        //HealthController.ResetHealth();
 
 
     }
@@ -72,9 +73,10 @@ public class Player : MonoBehaviour {
             ChargerEnemy chargerEnemy = col.gameObject.GetComponent<ChargerEnemy>();
             if (chargerEnemy)
             {
-                HealthController.currentHealth -= chargerEnemy.GetDamage();
+                healthController.currentHealth -= chargerEnemy.GetDamage();
+                healthController.SetHealth(healthController.currentHealth, healthController.maxHealth);
 
-                if (HealthController.currentHealth> 0)
+                if (healthController.currentHealth> 0)
                 {
                     invincible = true;
                     yield return new WaitForSeconds(2);
@@ -99,8 +101,9 @@ public class Player : MonoBehaviour {
             ChaserEnemyBehaviour chaserEnemy = col.gameObject.GetComponent<ChaserEnemyBehaviour>();
             if (chaserEnemy)
             {
-                HealthController.currentHealth -= chaserEnemy.GetDamage();
-                if (HealthController.currentHealth> 0)
+                healthController.currentHealth -= chaserEnemy.GetDamage();
+                healthController.SetHealth(healthController.currentHealth, healthController.maxHealth);
+                if (healthController.currentHealth> 0)
                 {
                     invincible = true;
                     yield return new WaitForSeconds(2);
@@ -124,10 +127,10 @@ public class Player : MonoBehaviour {
                 missle.Hit();
                 if (!invincible)
                 {
-                    HealthController.currentHealth -= missle.GetDamage();
+                    healthController.currentHealth -= missle.GetDamage();
                     //invincible = true;
-
-                    if (HealthController.currentHealth > 0)
+                     healthController.SetHealth(healthController.currentHealth, healthController.maxHealth);
+                    if (healthController.currentHealth > 0)
                     {
                         invincible = true;
                         yield return new WaitForSeconds(2);
@@ -146,7 +149,8 @@ public class Player : MonoBehaviour {
         HealthPack healthPack = col.gameObject.GetComponent<HealthPack>();
         if (healthPack && healthPack.canHeal)
         {
-            HealthController.currentHealth += healthPack.amountOfHealing;
+            healthController.currentHealth += healthPack.amountOfHealing;
+            healthController.SetHealth(healthController.currentHealth, healthController.maxHealth);
             Destroy(col.gameObject);
         }
     }

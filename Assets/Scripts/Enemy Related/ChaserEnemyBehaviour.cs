@@ -31,9 +31,9 @@ public class ChaserEnemyBehaviour : MonoBehaviour
     private ScoreKeeper scoreKeeper;
     //public AudioClip deathSound;
 
-    public float damage = 2f;
+    public int damage = 2;
 
-    public float GetDamage()
+    public int GetDamage()
     {
         return damage;
     }
