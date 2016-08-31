@@ -54,7 +54,6 @@ public class HealthController : MonoBehaviour
             Player.currentMaxHealthUpgrades++;
             maxHealth += _health;
             SetHealth(currentHealth, maxHealth);
-            print("done");
             Player.skillPoints--;
         }
     }
