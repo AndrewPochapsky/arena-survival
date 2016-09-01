@@ -18,8 +18,8 @@ public class Player : MonoBehaviour {
     public static float speedOfLaser = 10;
     public static float firingRate = 1f;
     public static int damage = 2;
-    public static int skillPoints = 4;
-    public static int speed = 5;
+    public static int skillPoints = 999;
+    public static float speed = 5;
     public static int maxUpgrades = 5;
     public static int currentDamageUpgrades = 0;
     public static int currentMaxHealthUpgrades = 0;

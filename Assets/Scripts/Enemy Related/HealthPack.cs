@@ -11,11 +11,12 @@ public class HealthPack : MonoBehaviour {
 
     private Color color;
     private HealthController healthController;
-   
+    private float initializationTime;
     public int amountOfHealing = 2;
     public bool canHeal;
 	// Use this for initialization
 	void Start () {
+        initializationTime = Time.timeSinceLevelLoad;
         renderer = GetComponent<SpriteRenderer>();
         color = renderer.color;
         //so healthpacks dont remain for the entire game would be too op
@@ -25,7 +26,9 @@ public class HealthPack : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-	    if (healthController.currentHealth + amountOfHealing > healthController.maxHealth)
+        float timeSinceInitialization = Time.timeSinceLevelLoad - initializationTime;
+
+        if (healthController.currentHealth + amountOfHealing > healthController.maxHealth)
         {
             canHeal = false;
         }
@@ -33,7 +36,7 @@ public class HealthPack : MonoBehaviour {
         {
             canHeal = true;
         }
-        if(Time.time> (timeAlive / 2))
+        if(timeSinceInitialization > (timeAlive / 2))
         {
             Fade();
         }

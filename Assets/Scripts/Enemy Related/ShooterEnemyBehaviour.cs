@@ -6,7 +6,7 @@ public class ShooterEnemyBehaviour : MonoBehaviour
     public float dropRate = 0.33f;
     public HealthPack healthPack;
     public int speed;
-    private float range;
+    public static float distance;
     private Player player;
     public int maxHealth = 20;
 
@@ -33,21 +33,13 @@ public class ShooterEnemyBehaviour : MonoBehaviour
 
     void Update()
     {
-        range = Vector2.Distance(transform.position, player.transform.position);
+        distance = Vector2.Distance(transform.position, player.transform.position);
         transform.position = Vector2.MoveTowards(transform.position, player.transform.position, speed * Time.deltaTime);
     }
-
-
-    
-    public int scoreValue = 150;
-    //private ScoreKeeper scoreKeeper;
-    //public AudioClip fireSound;
-    //public AudioClip deathSound;
     void Start()
     {
        
         Init();
-        //scoreKeeper = GameObject.Find("Score").GetComponent<ScoreKeeper>();
         
     }
     void OnCollisionEnter2D(Collision2D col)
@@ -80,8 +72,6 @@ public class ShooterEnemyBehaviour : MonoBehaviour
         {
             Instantiate(healthPack, new Vector3(transform.position.x, transform.position.y, transform.position.z), Quaternion.identity);
         }
-        //scoreKeeper.Score(scoreValue);
-        //AudioSource.PlayClipAtPoint(deathSound, transform.position);
     }
 
 }

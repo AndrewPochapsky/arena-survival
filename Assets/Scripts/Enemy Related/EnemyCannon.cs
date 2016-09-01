@@ -8,8 +8,11 @@ public class EnemyCannon : MonoBehaviour {
     public float speedOfLaser;
     public float firingRate = 0.5f;
     public float nextFire = 0.5f;
+    private ShooterEnemyBehaviour shooter;
+    public float shootingRange = 5f;
     // Use this for initialization
     void Start () {
+        //shooter = GameObject.FindObjectOfType<ShooterEnemyBehaviour>();
         player = GameObject.FindObjectOfType<Player>();
 	}
 	
@@ -32,9 +35,13 @@ public class EnemyCannon : MonoBehaviour {
 
     void ShootLaser()
     {
-        GameObject beam = Instantiate(enemyLaserPrefab, new Vector3(cannonExit.transform.position.x, cannonExit.transform.position.y, cannonExit.transform.position.z), Quaternion.identity) as GameObject;
-        beam.GetComponent<Rigidbody2D>().velocity = (dir * speedOfLaser);
-        //AudioSource.PlayClipAtPoint(fireSound, transform.position);
+        if(ShooterEnemyBehaviour.distance < shootingRange)
+        {
+            GameObject beam = Instantiate(enemyLaserPrefab, new Vector3(cannonExit.transform.position.x, cannonExit.transform.position.y, cannonExit.transform.position.z), Quaternion.identity) as GameObject;
+            beam.GetComponent<Rigidbody2D>().velocity = (dir * speedOfLaser);
+            //AudioSource.PlayClipAtPoint(fireSound, transform.position);
+        }
+
     }
 
 }

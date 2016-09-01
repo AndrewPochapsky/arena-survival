@@ -23,7 +23,7 @@ public class UpgradeManager : MonoBehaviour {
             Player.skillPoints--;
         }
     }
-    public void IncreaseSpeed(int _speed)
+    public void IncreaseSpeed(float _speed)
     {
         if (Player.skillPoints > 0 && Player.currentSpeedUpgrades < Player.maxUpgrades)
         {

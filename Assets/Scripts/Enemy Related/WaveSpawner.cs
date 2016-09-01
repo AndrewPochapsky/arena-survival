@@ -135,7 +135,11 @@ public class WaveSpawner : MonoBehaviour {
         Debug.Log("Wave completed!");   
         state = SpawnState.COUNTING;
         waveCountDown = timeBetweenWaves;
-        Player.skillPoints++;
+        if(nextWave % 2 != 0)
+        {
+            Player.skillPoints++;
+        }
+        
         Debug.Log("Skillpoints: " + Player.skillPoints);
         if(nextWave + 1> waves.Length-1)
         {
