@@ -5,9 +5,7 @@ public class ChargerEnemy: MonoBehaviour
 {
 
     public float dropRate = 0.33f;
-    public HealthPack healthPack;
-    bool noMore = false;
-    float chargeTime= 5f;
+    public HealthPack healthPack;    
     private Rigidbody2D rb;
     private Vector3 playerPos;
     public int maxRayDistance = 100;
@@ -28,13 +26,11 @@ public class ChargerEnemy: MonoBehaviour
     [SerializeField]
     private StatusIndicator statusIndicator;
 
-    public int scoreValue = 150;
     public float speed = 0.01f;
 
 
     private float minDistance = 1f;
     private float range;
-    private ScoreKeeper scoreKeeper;
     //public AudioClip deathSound;
 
     public int damage = 4;
@@ -47,8 +43,6 @@ public class ChargerEnemy: MonoBehaviour
     {
 
         rb = GetComponent<Rigidbody2D>();
-        
-        scoreKeeper = GameObject.Find("Score").GetComponent<ScoreKeeper>();
     }
     void Start()
     {
@@ -102,7 +96,7 @@ public class ChargerEnemy: MonoBehaviour
         {
             Instantiate(healthPack, new Vector3(transform.position.x, transform.position.y, transform.position.z), Quaternion.identity);
         }
-        scoreKeeper.Score(scoreValue);
+      
         //AudioSource.PlayClipAtPoint(deathSound, transform.position);
     }
 

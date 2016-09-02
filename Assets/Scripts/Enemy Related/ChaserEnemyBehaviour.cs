@@ -24,11 +24,7 @@ public class ChaserEnemyBehaviour : MonoBehaviour
 
     public int scoreValue = 150;
     public float speed = 0.01f;
-
-    
-    private float minDistance = 1f;
     private float range;
-    private ScoreKeeper scoreKeeper;
     //public AudioClip deathSound;
 
     public int damage = 2;
@@ -42,8 +38,7 @@ public class ChaserEnemyBehaviour : MonoBehaviour
     {
         player = GameObject.FindObjectOfType<Player>();
         Init();
-        scoreKeeper = GameObject.Find("Score").GetComponent<ScoreKeeper>();
-
+        
         if (statusIndicator != null)
         {
             statusIndicator.SetHealth(currentHealth, maxHealth);
@@ -82,7 +77,7 @@ public class ChaserEnemyBehaviour : MonoBehaviour
         {
            Instantiate(healthPack, new Vector3(transform.position.x,transform.position.y,transform.position.z),Quaternion.identity);
         }
-        scoreKeeper.Score(scoreValue);
+       
         //AudioSource.PlayClipAtPoint(deathSound, transform.position);
     }
 

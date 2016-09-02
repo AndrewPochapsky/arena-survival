@@ -5,29 +5,36 @@ using UnityEngine.UI;
 public class UpgradeManager : MonoBehaviour {
     public Text damageText, speedText, healthText, firingRateText, shotSpeedText;
 
-	// Update is called once per frame
-	void Update () {
-        damageText.text = Player.currentDamageUpgrades + "/" + Player.maxUpgrades;
-        speedText.text = Player.currentSpeedUpgrades+ "/" + Player.maxUpgrades;
-        healthText.text = Player.currentMaxHealthUpgrades+ "/" + Player.maxUpgrades;
-        firingRateText.text = Player.currentFiringRateUpgrades + "/" + Player.maxUpgrades;
-        shotSpeedText.text = Player.currentShotSpeedUpgrades+ "/" + Player.maxUpgrades;
+    public static int maxUpgrades = 5;
+    public static int currentDamageUpgrades = 0;
+    public static int currentMaxHealthUpgrades = 0;
+    public static int currentFiringRateUpgrades = 0;
+    public static int currentShotSpeedUpgrades = 0;
+    public static int currentSpeedUpgrades = 0;
+
+    // Update is called once per frame
+    void Update () {
+        damageText.text = currentDamageUpgrades + "/" + maxUpgrades;
+        speedText.text =  currentSpeedUpgrades+ "/" + maxUpgrades;
+        healthText.text = currentMaxHealthUpgrades+ "/" + maxUpgrades;
+        firingRateText.text = currentFiringRateUpgrades + "/" + maxUpgrades;
+        shotSpeedText.text = currentShotSpeedUpgrades+ "/" + maxUpgrades;
     }
 
     public void IncreaseDamage(int _damage)
     {
-        if (Player.skillPoints > 0 && Player.currentDamageUpgrades < Player.maxUpgrades)
+        if (Player.skillPoints > 0 && currentDamageUpgrades < maxUpgrades)
         {
-            Player.currentDamageUpgrades++;
+            currentDamageUpgrades++;
             Player.damage += _damage;
             Player.skillPoints--;
         }
     }
     public void IncreaseSpeed(float _speed)
     {
-        if (Player.skillPoints > 0 && Player.currentSpeedUpgrades < Player.maxUpgrades)
+        if (Player.skillPoints > 0 && currentSpeedUpgrades < maxUpgrades)
         {
-            Player.currentSpeedUpgrades++;
+            currentSpeedUpgrades++;
             Player.speed += _speed;
             Player.skillPoints--;
         }
@@ -35,9 +42,9 @@ public class UpgradeManager : MonoBehaviour {
 
     public void IncreaseShotSpeed(int _shotSpeed)
     {
-        if (Player.skillPoints > 0 && Player.currentShotSpeedUpgrades < Player.maxUpgrades)
+        if (Player.skillPoints > 0 && currentShotSpeedUpgrades < maxUpgrades)
         {
-            Player.currentShotSpeedUpgrades++;
+            currentShotSpeedUpgrades++;
             Player.speedOfLaser += _shotSpeed;
             Player.skillPoints--;
         }
@@ -45,9 +52,9 @@ public class UpgradeManager : MonoBehaviour {
 
     public void IncreaseFireRate(float _fireRate)
     {
-        if (Player.skillPoints > 0 && Player.currentFiringRateUpgrades < Player.maxUpgrades)
+        if (Player.skillPoints > 0 && currentFiringRateUpgrades < maxUpgrades)
         {
-            Player.currentFiringRateUpgrades++;
+            currentFiringRateUpgrades++;
             Player.firingRate += _fireRate;
             Player.skillPoints--;
         }

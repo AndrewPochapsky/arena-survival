@@ -5,40 +5,30 @@ using UnityEngine.UI;
 public class Player : MonoBehaviour {
     Rigidbody2D rb;
     
-   
     public LevelManager levelManager;
     public AudioClip dieSound;
    
     public bool invincible = false;
-
-    private LivesText livesText;
     private PlayerProjectile proj;
     private HealthController healthController;
 
+    
     public static float speedOfLaser = 10;
     public static float firingRate = 1f;
     public static int damage = 2;
-    public static int skillPoints = 999;
+    public static int skillPoints = 0;
     public static float speed = 5;
-    public static int maxUpgrades = 5;
-    public static int currentDamageUpgrades = 0;
-    public static int currentMaxHealthUpgrades = 0;
-    public static int currentFiringRateUpgrades = 0;
-    public static int currentShotSpeedUpgrades = 0;
-    public static int currentSpeedUpgrades = 0;
 
+    public bool canMove = true;
+    public bool canDash;
+    private float dashSpeed = 10;
+    private float dashCoolDown = 0;
     // Use this for initialization
     void Start () {
         
         proj = GameObject.FindObjectOfType<PlayerProjectile>();
         rb = GetComponent<Rigidbody2D>();
-        float distance = transform.position.z - Camera.main.transform.position.z;
-        Vector3 leftMost = Camera.main.ViewportToWorldPoint(new Vector3(0,0,distance));
-        Vector3 rightMost = Camera.main.ViewportToWorldPoint(new Vector3(1, 0, distance));
-
         healthController = GameObject.FindObjectOfType<HealthController>();
-        LivesText.ResetLives();
-        //HealthController.ResetHealth();
 
 
     }
@@ -46,22 +36,57 @@ public class Player : MonoBehaviour {
     // Update is called once per frame
     void Update()
     {
+
+        if(dashCoolDown > 0)
+        {
+            canDash = false;
+            dashCoolDown -= Time.deltaTime;
+        }
+        if(dashCoolDown <= 0)
+        {
+            canDash = true;
+        }
         rb.freezeRotation = true;
-        if (Input.GetKey(KeyCode.A))
+        if (canMove)
         {
-            transform.Translate (Vector3.left * speed * Time.deltaTime);
+            if (Input.GetKey(KeyCode.A))
+            {
+                transform.Translate(Vector3.left * speed * Time.deltaTime);
+            }
+            if (Input.GetKey(KeyCode.W))
+            {
+                transform.Translate(Vector3.up * speed * Time.deltaTime);
+            }
+            if (Input.GetKey(KeyCode.D))
+            {
+                transform.Translate(Vector3.right * speed * Time.deltaTime);
+            }
+            if (Input.GetKey(KeyCode.S))
+            {
+                transform.Translate(Vector3.down * speed * Time.deltaTime);
+            }
         }
-        if (Input.GetKey(KeyCode.W))
+       
+        if (canDash)
         {
-            transform.Translate(Vector3.up * speed * Time.deltaTime);
-        }
-        if (Input.GetKey(KeyCode.D))
-        {
-            transform.Translate(Vector3.right * speed * Time.deltaTime);
-        }
-        if (Input.GetKey(KeyCode.S))
-        {
-            transform.Translate(Vector3.down * speed * Time.deltaTime);
+            if (Input.GetKey(KeyCode.A) && Input.GetKeyDown(KeyCode.Space))
+            {
+                StartCoroutine(DashLeft());
+            }
+            if (Input.GetKey(KeyCode.W) && Input.GetKeyDown(KeyCode.Space))
+            {
+        
+                StartCoroutine(DashUp());
+            }
+            if (Input.GetKey(KeyCode.D) && Input.GetKeyDown(KeyCode.Space))
+            {
+
+                StartCoroutine(DashRight());
+            }
+            if (Input.GetKey(KeyCode.S) && Input.GetKeyDown(KeyCode.Space))
+            {
+                StartCoroutine(DashDown());
+            }
         }
     }
 
@@ -162,7 +187,42 @@ public class Player : MonoBehaviour {
         levelManager.LoadLevel("Win");
     }
     
+    IEnumerator DashUp()
+    {
+        canMove = false;
+        rb.velocity = Vector2.up * dashSpeed;
+        yield return new WaitForSeconds(0.25f);
+        rb.velocity = Vector2.zero;
+        canMove = true;
+        dashCoolDown = 2;   
+    }
 
-
+    IEnumerator DashDown()
+    {
+        canMove = false;
+        rb.velocity = Vector2.down * dashSpeed;
+        yield return new WaitForSeconds(0.25f);
+        rb.velocity = Vector2.zero;
+        canMove = true;
+        dashCoolDown = 2;
+    }
+    IEnumerator DashLeft()
+    {
+        canMove = false;
+        rb.velocity = Vector2.left * dashSpeed;
+        yield return new WaitForSeconds(0.25f);
+        rb.velocity = Vector2.zero;
+        canMove = true;
+        dashCoolDown = 2;
+    }
+    IEnumerator DashRight()
+    {
+        canMove = false;
+        rb.velocity = Vector2.right * dashSpeed;
+        yield return new WaitForSeconds(0.25f);
+        rb.velocity = Vector2.zero;
+        canMove = true;
+        dashCoolDown = 2;
+    }
 
 }

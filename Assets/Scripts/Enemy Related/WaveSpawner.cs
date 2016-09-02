@@ -122,7 +122,7 @@ public class WaveSpawner : MonoBehaviour {
         if(searchCountDown <= 0)
         {
             searchCountDown = 1f;
-            if (GameObject.FindGameObjectsWithTag("Enemy").Length == 0)
+            if (GameObject.FindGameObjectsWithTag("Enemy").Length == 0 && GameObject.FindGameObjectsWithTag("ChargerEnemy").Length==0)
             {
                 return false;
             }          

@@ -48,10 +48,10 @@ public class HealthController : MonoBehaviour
 
     public void IncreaseMaxHealth(int _health)
     {
-        if (Player.skillPoints > 0 && Player.currentMaxHealthUpgrades < Player.maxUpgrades)
+        if (Player.skillPoints > 0 && UpgradeManager.currentMaxHealthUpgrades < UpgradeManager.maxUpgrades)
         {
 
-            Player.currentMaxHealthUpgrades++;
+            UpgradeManager.currentMaxHealthUpgrades++;
             maxHealth += _health;
             SetHealth(currentHealth, maxHealth);
             Player.skillPoints--;
