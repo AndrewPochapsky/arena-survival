@@ -22,9 +22,10 @@ public class WaveSpawner : MonoBehaviour {
     public Transform[] bossSpawnPoints;
     public Wave[] waves;
     public int nextWave = 0;
-
+    
+    public static int currentWave = 1;
     public float timeBetweenWaves = 5f;
-    public float waveCountDown;
+    public static float waveCountDown;
     private Player player;
     private float searchCountDown = 1f;
     private SpawnState state = SpawnState.COUNTING;
@@ -40,7 +41,7 @@ public class WaveSpawner : MonoBehaviour {
     
     void Update()
     {
-        Debug.Log("Skillpoints: " + Player.skillPoints);
+      
         if (state == SpawnState.WAITING)
         {
             if (!EnemyIsAlive())
@@ -148,6 +149,7 @@ public class WaveSpawner : MonoBehaviour {
         }
         else
         {
+            currentWave++;
             nextWave++;
         }
     }

@@ -16,7 +16,6 @@ public class Cannon : MonoBehaviour {
     public Vector2 direction;
     private Vector2 mousePosition;
     private Transform myTransform;
-    private GameObject player;
     public GameObject laserPrefab;
     
     private float angle;

@@ -29,8 +29,7 @@ public class ChargerEnemy: MonoBehaviour
     public float speed = 0.01f;
 
 
-    private float minDistance = 1f;
-    private float range;
+  
     //public AudioClip deathSound;
 
     public int damage = 4;
