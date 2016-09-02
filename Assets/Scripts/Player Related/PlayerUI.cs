@@ -13,9 +13,9 @@ public class PlayerUI : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        damage.text = Player.damage.ToString();
-        speed.text = Player.speed.ToString();
-        shotSpeed.text = Player.speedOfLaser.ToString();
-        fireRate.text = Player.firingRate.ToString();
+        damage.text = "Damage: " + Player.damage.ToString();
+        speed.text = "Speed: " + Player.speed.ToString();
+        shotSpeed.text = "Shot Speed: " + Player.speedOfLaser.ToString();
+        fireRate.text = "Fire Rate: " + Player.firingRate.ToString();
 	}
 }
