@@ -11,7 +11,8 @@ public class Player : MonoBehaviour {
     public bool invincible = false;
     private PlayerProjectile proj;
     private HealthController healthController;
-
+    private float buttonCooler = 0.5f;
+    private int buttonCounter = 0;
     
     public static float speedOfLaser = 10;
     public static float firingRate = 1f;
@@ -25,7 +26,7 @@ public class Player : MonoBehaviour {
     private float dashCoolDown = 0;
     // Use this for initialization
     void Start () {
-        
+        Time.timeScale = 1;
         proj = GameObject.FindObjectOfType<PlayerProjectile>();
         rb = GetComponent<Rigidbody2D>();
         healthController = GameObject.FindObjectOfType<HealthController>();

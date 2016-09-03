@@ -23,7 +23,7 @@ public class WaveUI : MonoBehaviour {
         }
         else
         {
-            waveInfo.text = "Spawning in: " + Mathf.Round(WaveSpawner.waveCountDown).ToString();
+            waveInfo.text = "Enemies spawning in: " + Mathf.Round(WaveSpawner.waveCountDown).ToString();
         }
         
        
