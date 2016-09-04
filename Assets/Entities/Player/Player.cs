@@ -17,7 +17,7 @@ public class Player : MonoBehaviour {
     public static float speedOfLaser = 10;
     public static float firingRate = 1f;
     public static int damage = 2;
-    public static int skillPoints = 0;
+    public static int skillPoints = 5;
     public static float speed = 5;
 
     public bool canMove = true;
@@ -30,6 +30,7 @@ public class Player : MonoBehaviour {
         proj = GameObject.FindObjectOfType<PlayerProjectile>();
         rb = GetComponent<Rigidbody2D>();
         healthController = GameObject.FindObjectOfType<HealthController>();
+
 
 
     }
@@ -100,7 +101,7 @@ public class Player : MonoBehaviour {
             if (chargerEnemy)
             {
                 healthController.currentHealth -= chargerEnemy.GetDamage();
-                healthController.SetHealth(healthController.currentHealth, healthController.maxHealth);
+                healthController.SetHealth(healthController.currentHealth, HealthController.maxHealth);
 
                 if (healthController.currentHealth> 0)
                 {
@@ -128,7 +129,7 @@ public class Player : MonoBehaviour {
             if (chaserEnemy)
             {
                 healthController.currentHealth -= chaserEnemy.GetDamage();
-                healthController.SetHealth(healthController.currentHealth, healthController.maxHealth);
+                healthController.SetHealth(healthController.currentHealth, HealthController.maxHealth);
                 if (healthController.currentHealth> 0)
                 {
                     invincible = true;
@@ -155,7 +156,7 @@ public class Player : MonoBehaviour {
                 {
                     healthController.currentHealth -= missle.GetDamage();
                     //invincible = true;
-                     healthController.SetHealth(healthController.currentHealth, healthController.maxHealth);
+                     healthController.SetHealth(healthController.currentHealth, HealthController.maxHealth);
                     if (healthController.currentHealth > 0)
                     {
                         invincible = true;
@@ -176,7 +177,7 @@ public class Player : MonoBehaviour {
         if (healthPack && healthPack.canHeal)
         {
             healthController.currentHealth += healthPack.amountOfHealing;
-            healthController.SetHealth(healthController.currentHealth, healthController.maxHealth);
+            healthController.SetHealth(healthController.currentHealth, HealthController.maxHealth);
             Destroy(col.gameObject);
         }
     }

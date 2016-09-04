@@ -21,7 +21,7 @@ public class WaveSpawner : MonoBehaviour {
     public Transform[] spawnPoints;
     public Transform[] bossSpawnPoints;
     public Wave[] waves;
-    public int nextWave = 0;
+    public static int nextWave = 0;
     
     public static int currentWave = 1;
     public float timeBetweenWaves = 5f;
@@ -133,6 +133,7 @@ public class WaveSpawner : MonoBehaviour {
 
     void WaveCompleted()
     {
+        
         Debug.Log("Wave completed!");   
         state = SpawnState.COUNTING;
         waveCountDown = timeBetweenWaves;

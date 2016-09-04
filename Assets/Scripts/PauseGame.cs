@@ -3,7 +3,7 @@ using System.Collections;
 
 public class PauseGame : MonoBehaviour {
 
-    public Transform menuScreen;
+    public Transform menuScreen, pauseMenu, controlsMenu;
 	
 	// Update is called once per frame
 	void Update () {
@@ -24,6 +24,20 @@ public class PauseGame : MonoBehaviour {
         {
             menuScreen.gameObject.SetActive(false);
             Time.timeScale = 1;
+        }
+    }
+
+    public void Controls()
+    {
+        if (!controlsMenu.gameObject.activeInHierarchy)
+        {
+            controlsMenu.gameObject.SetActive(true);
+            pauseMenu.gameObject.SetActive(false);
+        }
+        else
+        {
+            controlsMenu.gameObject.SetActive(false);
+            pauseMenu.gameObject.SetActive(true);
         }
     }
 

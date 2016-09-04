@@ -28,7 +28,7 @@ public class HealthPack : MonoBehaviour {
 	void Update () {
         float timeSinceInitialization = Time.timeSinceLevelLoad - initializationTime;
 
-        if (healthController.currentHealth + amountOfHealing > healthController.maxHealth)
+        if (healthController.currentHealth + amountOfHealing > HealthController.maxHealth)
         {
             canHeal = false;
         }

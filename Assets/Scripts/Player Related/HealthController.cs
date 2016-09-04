@@ -6,12 +6,12 @@ public class HealthController : MonoBehaviour
 {
     [SerializeField]
     private RectTransform healthBarRect;
-
+    public static int savableCurrentHealth;
     public Text healthText;
-    public int maxHealth = 10;
+    public static int maxHealth = 10;
     //public static float currentHealth = 10f;
 
-    private int _currentHealth;
+    public static int _currentHealth;
     public int currentHealth
     {
         get { return _currentHealth; }
@@ -21,13 +21,14 @@ public class HealthController : MonoBehaviour
 
     void Start()
     {
+        //savableCurrentHealth = currentHealth;
         currentHealth = maxHealth;
         SetHealth(currentHealth, maxHealth);
     }
 
     void Update()
     {
-
+        //currentHealth = savableCurrentHealth;
         //healthText.text = "Health: " + currentHealth.ToString()+"/"+maxHealth.ToString();
 
     }
