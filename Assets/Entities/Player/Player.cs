@@ -4,7 +4,8 @@ using UnityEngine.UI;
 
 public class Player : MonoBehaviour {
     Rigidbody2D rb;
-    
+
+    private VideoManager videoManager;
     public LevelManager levelManager;
     public AudioClip dieSound;
    
@@ -26,12 +27,13 @@ public class Player : MonoBehaviour {
     private float dashCoolDown = 0;
     // Use this for initialization
     void Start () {
+
+        videoManager = GameObject.FindObjectOfType<VideoManager>();
+
         Time.timeScale = 1;
         proj = GameObject.FindObjectOfType<PlayerProjectile>();
         rb = GetComponent<Rigidbody2D>();
         healthController = GameObject.FindObjectOfType<HealthController>();
-
-
 
     }
 
