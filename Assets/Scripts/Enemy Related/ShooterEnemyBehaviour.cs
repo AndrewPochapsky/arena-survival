@@ -3,6 +3,8 @@ using System.Collections;
 
 public class ShooterEnemyBehaviour : MonoBehaviour
 {
+    
+
     public float dropRate = 0.33f;
     public HealthPack healthPack;
     public int speed;
@@ -31,17 +33,19 @@ public class ShooterEnemyBehaviour : MonoBehaviour
         }
     }
 
+    void Start()
+    {
+
+        Init();
+        
+    }
+
     void Update()
     {
         distance = Vector2.Distance(transform.position, player.transform.position);
         transform.position = Vector2.MoveTowards(transform.position, player.transform.position, speed * Time.deltaTime);
     }
-    void Start()
-    {
-       
-        Init();
-        
-    }
+    
     void OnCollisionEnter2D(Collision2D col)
     {
         PlayerProjectile missle = col.gameObject.GetComponent<PlayerProjectile>();

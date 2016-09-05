@@ -3,6 +3,7 @@ using System.Collections;
 
 public class EnemyCannon : MonoBehaviour {
     private Player player;
+    private Animator anim;
     Vector3 dir;
     public GameObject enemyLaserPrefab, cannonExit;
     public float speedOfLaser;
@@ -14,7 +15,8 @@ public class EnemyCannon : MonoBehaviour {
     void Start () {
         //shooter = GameObject.FindObjectOfType<ShooterEnemyBehaviour>();
         player = GameObject.FindObjectOfType<Player>();
-	}
+        anim = GetComponent<Animator>();
+    }
 	
 	// Update is called once per frame
 	void Update () {
@@ -37,6 +39,7 @@ public class EnemyCannon : MonoBehaviour {
     {
         if(ShooterEnemyBehaviour.distance < shootingRange)
         {
+            anim.SetTrigger("Shoot");
             GameObject beam = Instantiate(enemyLaserPrefab, new Vector3(cannonExit.transform.position.x, cannonExit.transform.position.y, cannonExit.transform.position.z), Quaternion.identity) as GameObject;
             beam.GetComponent<Rigidbody2D>().velocity = (dir * speedOfLaser);
             //AudioSource.PlayClipAtPoint(fireSound, transform.position);
