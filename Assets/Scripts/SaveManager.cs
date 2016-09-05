@@ -13,14 +13,7 @@ public class SaveManager : MonoBehaviour {
 	// Use this for initialization
 	void Awake () {
         healthController = GetComponent<HealthController>();
-        //if(saveManager == null)
-        //{
-        //    DontDestroyOnLoad(gameObject);
-        //    saveManager = this;
-        //}else if (saveManager != this)
-        //{
-        //    Destroy(gameObject);
-        //}
+        
         
     }
 
@@ -37,6 +30,7 @@ public class SaveManager : MonoBehaviour {
         data.fireRate = Player.firingRate;
         //data.currentHealth = healthController.currentHealth;
         data.maxHealth = HealthController.maxHealth;
+        data.healthDifference = HealthController.healthDifference;
 
         data.skillPoints = Player.skillPoints;
         data.currentDamageUpgrades = UpgradeManager.currentDamageUpgrades;
@@ -68,6 +62,7 @@ public class SaveManager : MonoBehaviour {
             Player.firingRate = data.fireRate;
             //healthController.currentHealth = data.currentHealth;
             HealthController.maxHealth = data.maxHealth;
+            HealthController.healthDifference = data.healthDifference;
 
             Player.skillPoints = data.skillPoints;
             UpgradeManager.currentDamageUpgrades = data.currentDamageUpgrades;
@@ -86,7 +81,7 @@ public class SaveManager : MonoBehaviour {
 [Serializable]
 class PlayerData
 {
-    public int test;
+    public int healthDifference;
     public float shotspeed, speed, fireRate;
     public int damage, currentHealth, maxHealth, skillPoints, currentDamageUpgrades, currentMaxHealthUpgrades, currentSpeedUpgrades, currentShotSpeedUpgrades, currentFiringRateUpgrades;
     public int currentWave, nextWave;

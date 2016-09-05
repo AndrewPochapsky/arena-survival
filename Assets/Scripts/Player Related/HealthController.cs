@@ -9,6 +9,8 @@ public class HealthController : MonoBehaviour
     public static int savableCurrentHealth;
     public Text healthText;
     public static int maxHealth = 10;
+    public static int healthDifference;
+
     //public static float currentHealth = 10f;
 
     public static int _currentHealth;
@@ -18,19 +20,22 @@ public class HealthController : MonoBehaviour
         set { _currentHealth = Mathf.Clamp(value, 0, maxHealth); }
     }
 
-
+    void Awake()
+    {
+        currentHealth = maxHealth;
+        SetHealth(currentHealth, maxHealth);
+    }
     void Start()
     {
         //savableCurrentHealth = currentHealth;
-        currentHealth = maxHealth;
+        currentHealth -= healthDifference;
         SetHealth(currentHealth, maxHealth);
     }
 
     void Update()
     {
-        //currentHealth = savableCurrentHealth;
-        //healthText.text = "Health: " + currentHealth.ToString()+"/"+maxHealth.ToString();
-
+        healthDifference = maxHealth - currentHealth;
+        print("Health difference: " +healthDifference);
     }
 
     //public static void ResetHealth()
