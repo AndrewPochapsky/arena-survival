@@ -176,7 +176,7 @@ public class Player : MonoBehaviour {
     void OnTriggerEnter2D(Collider2D col)
     {
         HealthPack healthPack = col.gameObject.GetComponent<HealthPack>();
-        if (healthPack && healthPack.canHeal)
+        if (healthPack)
         {
             healthController.currentHealth += healthPack.amountOfHealing;
             healthController.SetHealth(healthController.currentHealth, HealthController.maxHealth);

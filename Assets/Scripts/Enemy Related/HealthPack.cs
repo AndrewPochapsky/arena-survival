@@ -28,14 +28,14 @@ public class HealthPack : MonoBehaviour {
 	void Update () {
         float timeSinceInitialization = Time.timeSinceLevelLoad - initializationTime;
 
-        if (healthController.currentHealth + amountOfHealing > HealthController.maxHealth)
-        {
-            canHeal = false;
-        }
-        else
-        {
-            canHeal = true;
-        }
+        //if (healthController.currentHealth + amountOfHealing > HealthController.maxHealth)
+        //{
+        //    canHeal = false;
+        //}
+        //else
+        //{
+        //    canHeal = true;
+        //}
         if(timeSinceInitialization > (timeAlive / 2))
         {
             Fade();
