@@ -34,7 +34,11 @@ public class Cannon : MonoBehaviour {
 	// Update is called once per frame
 	void Update ()
     {
-        MoveCannon();
+        
+       
+      MoveCannon();
+        
+      
 
         if (Input.GetMouseButton(0)&&Time.time > nextFire)
         {
@@ -45,7 +49,7 @@ public class Cannon : MonoBehaviour {
 
     void Shoot()
     {
-        anim.SetTrigger("Shoot");
+        anim.SetTrigger("PlayerShoot");
         GameObject beam = Instantiate(laserPrefab, new Vector3(cannonExit.transform.position.x, cannonExit.transform.position.y, cannonExit.transform.position.z), Quaternion.identity) as GameObject;
         beam.GetComponent<Rigidbody2D>().velocity = (direction * Player.speedOfLaser);
         //AudioSource.PlayClipAtPoint(fireSound, transform.position);

@@ -1,10 +1,11 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class EnemyCannon : MonoBehaviour {
+public class DoubleCannon : MonoBehaviour
+{
     private Player player;
     private Animator anim;
-    Vector3 dir;
+    
     public GameObject enemyLaserPrefab, cannonExit;
     public float speedOfLaser;
     public float firingRate = 0.5f;
@@ -12,15 +13,17 @@ public class EnemyCannon : MonoBehaviour {
     private ShooterEnemyBehaviour shooter;
     public float shootingRange = 5f;
     // Use this for initialization
-    void Start () {
+    void Start()
+    {
         //shooter = GameObject.FindObjectOfType<ShooterEnemyBehaviour>();
         player = GameObject.FindObjectOfType<Player>();
         anim = GetComponent<Animator>();
     }
-	
-	// Update is called once per frame
-	void Update () {
-        LookAtPlayer();
+
+    // Update is called once per frame
+    void Update()
+    {
+       
         if (Time.time > nextFire)
         {
             nextFire = Time.time + firingRate;
@@ -28,20 +31,16 @@ public class EnemyCannon : MonoBehaviour {
         }
     }
 
-    void LookAtPlayer()
-    {
-        dir = player.transform.position - transform.position;
-        float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
-        transform.rotation = Quaternion.AngleAxis(angle - 90, Vector3.forward);
-    }
 
     void ShootLaser()
     {
-        if(ShooterEnemyBehaviour.distance < shootingRange)
+        if (ShooterEnemyBehaviour.distance < shootingRange)
         {
-            anim.SetTrigger("ShootV1");
+            
+            anim.SetTrigger("ShootV2");
             GameObject beam = Instantiate(enemyLaserPrefab, new Vector3(cannonExit.transform.position.x, cannonExit.transform.position.y, cannonExit.transform.position.z), Quaternion.identity) as GameObject;
-            beam.GetComponent<Rigidbody2D>().velocity = (dir * speedOfLaser);
+            beam.GetComponent<Rigidbody2D>().velocity = (CannonRotation.dir * speedOfLaser);
+            print("Shoot");
             //AudioSource.PlayClipAtPoint(fireSound, transform.position);
         }
 
