@@ -14,6 +14,8 @@ public class WaveSpawner : MonoBehaviour {
         public Transform enemy1;
         public Transform enemy2;
         public Transform enemy3;
+        public Transform enemy4;
+        public Transform enemy5;
         public Transform boss;
         public int count;
         public float spawnRate;
@@ -22,6 +24,7 @@ public class WaveSpawner : MonoBehaviour {
     public Transform[] bossSpawnPoints;
     public Wave[] waves;
     public static int nextWave = 0;
+    public static int timesLooped = 0;
     
     public static int currentWave = 1;
     public float timeBetweenWaves = 5f;
@@ -87,6 +90,14 @@ public class WaveSpawner : MonoBehaviour {
             {
                 SpawnEnemy(_wave.enemy3);
             }
+            if (_wave.enemy4 != null)
+            {
+                SpawnEnemy(_wave.enemy3);
+            }
+            if (_wave.enemy5 != null)
+            {
+                SpawnEnemy(_wave.enemy3);
+            }
             if (_wave.boss != null)
             {
                 SpawnBoss(_wave.boss);
@@ -145,6 +156,8 @@ public class WaveSpawner : MonoBehaviour {
         Debug.Log("Skillpoints: " + Player.skillPoints);
         if(nextWave + 1> waves.Length-1)
         {
+            timesLooped++;
+            currentWave = 1;
             Debug.Log("Completed all waves! Looping...");
             nextWave = 0;
         }

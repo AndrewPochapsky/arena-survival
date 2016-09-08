@@ -4,14 +4,11 @@ using UnityEngine.UI;
 
 public class WaveUI : MonoBehaviour {
 
+    public Text timesLooped;
     public Text waveText;
     public Text waveInfo;
-    private WaveSpawner waveSpawner;
     private int enemyCount;
-	// Use this for initialization
-	void Start () {
-        waveSpawner = GetComponent<WaveSpawner>();
-	}
+	
 	
 	// Update is called once per frame
 	void Update () {
@@ -25,7 +22,7 @@ public class WaveUI : MonoBehaviour {
         {
             waveInfo.text = "Enemies spawning in: " + Mathf.Round(WaveSpawner.waveCountDown).ToString();
         }
-        
+        timesLooped.text = "Times Looped: " + WaveSpawner.timesLooped;
        
         
 	}

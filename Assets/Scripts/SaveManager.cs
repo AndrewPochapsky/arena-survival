@@ -41,6 +41,7 @@ public class SaveManager : MonoBehaviour {
 
         data.currentWave = WaveSpawner.currentWave;
         data.nextWave = WaveSpawner.nextWave;
+        data.timesLooped = WaveSpawner.timesLooped;
         bf.Serialize(file, data);
         Debug.Log("saved");
         file.Close();
@@ -73,6 +74,7 @@ public class SaveManager : MonoBehaviour {
 
             WaveSpawner.currentWave = data.currentWave;
             WaveSpawner.nextWave = data.nextWave;
+            WaveSpawner.timesLooped = data.timesLooped;
         }
     }
 
@@ -84,5 +86,5 @@ class PlayerData
     public int healthDifference;
     public float shotspeed, speed, fireRate;
     public int damage, currentHealth, maxHealth, skillPoints, currentDamageUpgrades, currentMaxHealthUpgrades, currentSpeedUpgrades, currentShotSpeedUpgrades, currentFiringRateUpgrades;
-    public int currentWave, nextWave;
+    public int currentWave, nextWave, timesLooped;
 }
