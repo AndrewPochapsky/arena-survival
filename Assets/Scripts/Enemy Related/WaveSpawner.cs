@@ -25,7 +25,8 @@ public class WaveSpawner : MonoBehaviour {
     public Wave[] waves;
     public static int nextWave = 0;
     public static int timesLooped = 0;
-    
+
+    public static bool waveStarted = false;
     public static int currentWave = 1;
     public float timeBetweenWaves = 5f;
     public static float waveCountDown;
@@ -104,6 +105,7 @@ public class WaveSpawner : MonoBehaviour {
             }
            
             yield return new WaitForSeconds(1f / _wave.spawnRate);
+            waveStarted = true;
         }
         state = SpawnState.WAITING;
         yield break;
@@ -144,7 +146,7 @@ public class WaveSpawner : MonoBehaviour {
 
     void WaveCompleted()
     {
-        
+        waveStarted = false;
         Debug.Log("Wave completed!");   
         state = SpawnState.COUNTING;
         waveCountDown = timeBetweenWaves;
