@@ -26,6 +26,8 @@ public class WaveSpawner : MonoBehaviour {
     public static int nextWave = 0;
     public static int timesLooped = 0;
 
+    private PlayerUI playerUI;
+    public static bool popUp = false;
     public static bool waveStarted = false;
     public static int currentWave = 1;
     public float timeBetweenWaves = 5f;
@@ -35,6 +37,7 @@ public class WaveSpawner : MonoBehaviour {
     private SpawnState state = SpawnState.COUNTING;
     void Start()
     {
+        playerUI = GetComponent<PlayerUI>();
         player = GameObject.FindObjectOfType<Player>();
         waveCountDown = timeBetweenWaves;
         if (spawnPoints.Length == 0)
@@ -65,6 +68,7 @@ public class WaveSpawner : MonoBehaviour {
             {
                 //Start spawning wave
                 StartCoroutine(SpawnWave(waves[nextWave]));
+                popUp = false;
             }
         }
         else
@@ -152,7 +156,10 @@ public class WaveSpawner : MonoBehaviour {
         waveCountDown = timeBetweenWaves;
         if(nextWave % 2 != 0)
         {
-            Player.skillPoints++;
+            //Player.skillPoints++;
+            Player.IncreaseSkillPoints(1);
+            popUp = true;
+            
         }
         
         Debug.Log("Skillpoints: " + Player.skillPoints);

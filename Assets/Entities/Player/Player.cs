@@ -4,7 +4,7 @@ using UnityEngine.UI;
 
 public class Player : MonoBehaviour {
     Rigidbody2D rb;
-
+    public Text popUp;
     private VideoManager videoManager;
     public LevelManager levelManager;
     public AudioClip dieSound;
@@ -227,6 +227,13 @@ public class Player : MonoBehaviour {
         rb.velocity = Vector2.zero;
         canMove = true;
         dashCoolDown = 2;
+    }
+
+    public static int IncreaseSkillPoints(int _sp)
+    {
+        skillPoints += _sp;
+        
+        return skillPoints;
     }
 
 }
