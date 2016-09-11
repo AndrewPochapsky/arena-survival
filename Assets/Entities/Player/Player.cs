@@ -186,9 +186,11 @@ public class Player : MonoBehaviour {
 
     void Die()
     {
+        HighScoreManager.StoreHighScore(HighScoreManager.highScore);
         Destroy(gameObject);
-        AudioSource.PlayClipAtPoint(dieSound, transform.position);
+        //AudioSource.PlayClipAtPoint(dieSound, transform.position);
         levelManager.LoadLevel("Win");
+        
     }
     
     IEnumerator DashUp()
