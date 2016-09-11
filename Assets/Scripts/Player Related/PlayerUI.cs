@@ -5,38 +5,46 @@ public class PlayerUI : MonoBehaviour {
 
     public Text damage, speed, shotSpeed, fireRate, skillText, skillPopUp;
 
+    private float fadeDuration = 0.75f;
+    private float alpha = 0;
+    private Color color;
+    // Use this for initialization
+    void Start() {
+        color = skillPopUp.color;
+    }
 
-	// Use this for initialization
-	void Start () {
-	
-	}
-	
-	// Update is called once per frame
-	void Update () {
+    // Update is called once per frame
+    void Update() {
         damage.text = "Damage: " + Player.damage.ToString();
         speed.text = "Speed: " + Player.speed.ToString();
         shotSpeed.text = "Shot Speed: " + Player.speedOfLaser.ToString();
         fireRate.text = "Fire Rate: " + Player.firingRate.ToString();
         skillText.text = "Skill Points: " + Player.skillPoints.ToString();
+        PopUp();
 
-        if(WaveSpawner.popUp)
-        {
-            StartCoroutine(PopUp());
-        }
-       
+
     }
 
-    public IEnumerator PopUp()
+    void PopUp()
     {
+
+        if (WaveSpawner.popUp)
+        {
+
+            skillPopUp.gameObject.SetActive(true);
+
+        }
+        else
+        {
+            skillPopUp.gameObject.SetActive(false);
+        }
         float lerp = Mathf.PingPong(Time.time, fadeDuration) / fadeDuration;
 
         alpha = Mathf.Lerp(0.0f, 1.0f, lerp);
         color.a = alpha;
-        renderer.color = color;
-        skillPopUp.gameObject.SetActive(true);
-        yield return new WaitForSeconds(2);
-        skillPopUp.gameObject.SetActive(false);
-        
+        skillPopUp.color = color;
     }
+
+  
 
 }
