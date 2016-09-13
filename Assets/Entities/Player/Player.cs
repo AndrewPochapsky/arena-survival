@@ -8,7 +8,8 @@ public class Player : MonoBehaviour {
     private VideoManager videoManager;
     public LevelManager levelManager;
     public AudioClip dieSound;
-   
+
+    private float invincibleTime = 0.75f;
     public bool invincible = false;
     private PlayerProjectile proj;
     private HealthController healthController;
@@ -108,7 +109,7 @@ public class Player : MonoBehaviour {
                 if (healthController.currentHealth> 0)
                 {
                     invincible = true;
-                    yield return new WaitForSeconds(2);
+                    yield return new WaitForSeconds(invincibleTime);
                     invincible = false;
                 }
                 else
@@ -135,7 +136,7 @@ public class Player : MonoBehaviour {
                 if (healthController.currentHealth> 0)
                 {
                     invincible = true;
-                    yield return new WaitForSeconds(2);
+                    yield return new WaitForSeconds(invincibleTime);
                     invincible = false;
                 }
                 else
@@ -162,7 +163,7 @@ public class Player : MonoBehaviour {
                     if (healthController.currentHealth > 0)
                     {
                         invincible = true;
-                        yield return new WaitForSeconds(2);
+                        yield return new WaitForSeconds(invincibleTime);
                         invincible = false;
                     }
                     else
@@ -176,7 +177,7 @@ public class Player : MonoBehaviour {
     void OnTriggerEnter2D(Collider2D col)
     {
         HealthPack healthPack = col.gameObject.GetComponent<HealthPack>();
-        if (healthPack)
+        if (healthPack && healthController.currentHealth!=HealthController.maxHealth)
         {
             healthController.currentHealth += healthPack.amountOfHealing;
             healthController.SetHealth(healthController.currentHealth, HealthController.maxHealth);
