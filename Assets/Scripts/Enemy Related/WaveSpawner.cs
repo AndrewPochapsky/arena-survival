@@ -97,11 +97,11 @@ public class WaveSpawner : MonoBehaviour {
             }
             if (_wave.enemy4 != null)
             {
-                SpawnEnemy(_wave.enemy3);
+                SpawnEnemy(_wave.enemy4);
             }
             if (_wave.enemy5 != null)
             {
-                SpawnEnemy(_wave.enemy3);
+                SpawnEnemy(_wave.enemy5);
             }
             if (_wave.boss != null)
             {
