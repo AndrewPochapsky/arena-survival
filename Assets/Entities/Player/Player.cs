@@ -24,7 +24,7 @@ public class Player : MonoBehaviour {
 
     public bool canMove = true;
     public bool canDash;
-    private float dashSpeed = 10;
+    private float dashSpeed = 13;
     private float dashCoolDown = 0;
     // Use this for initialization
     void Start () {
