@@ -5,25 +5,16 @@ using System;
 using System.IO;
 public class SaveManager : MonoBehaviour {
 
-    public int testNumber = 3;
-
-    public static SaveManager saveManager;
-
-    private HealthController healthController;
-	// Use this for initialization
-	void Awake () {
-        healthController = GetComponent<HealthController>();
-        
-        
-    }
+    public static bool isInteractable = false;
 
     public void Save()
     {
         BinaryFormatter bf = new BinaryFormatter();
         FileStream file = File.Create(Application.persistentDataPath + "/playerInfo.dat");
         PlayerData data = new PlayerData();
+        isInteractable = true;
+        PlayerPrefs.SetInt("isInteractable", 1);
 
-       
         data.damage = Player.damage;
         data.shotspeed = Player.speedOfLaser;
         data.speed = Player.speed;
@@ -44,7 +35,8 @@ public class SaveManager : MonoBehaviour {
         data.timesLooped = WaveSpawner.timesLooped;
 
         data.localHighScore = HighScoreManager.localHighScore;
-
+       
+       
         bf.Serialize(file, data);
         Debug.Log("saved");
         file.Close();
@@ -80,6 +72,8 @@ public class SaveManager : MonoBehaviour {
             WaveSpawner.timesLooped = data.timesLooped;
 
             HighScoreManager.localHighScore = data.localHighScore;
+
+           
         }
     }
 
@@ -92,4 +86,5 @@ class PlayerData
     public float shotspeed, speed, fireRate;
     public int damage, currentHealth, maxHealth, skillPoints, currentDamageUpgrades, currentMaxHealthUpgrades, currentSpeedUpgrades, currentShotSpeedUpgrades, currentFiringRateUpgrades;
     public int currentWave, nextWave, timesLooped, localHighScore;
+    public bool isInteractable;
 }

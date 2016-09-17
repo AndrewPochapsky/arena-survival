@@ -188,6 +188,7 @@ public class Player : MonoBehaviour {
     void Die()
     {
         HighScoreManager.StoreHighScore();
+        PlayerPrefs.SetInt("isInteractable", 0);
         Destroy(gameObject);
         //AudioSource.PlayClipAtPoint(dieSound, transform.position);
         if (HighScoreManager.newHighScore)
