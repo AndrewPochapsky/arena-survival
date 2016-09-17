@@ -22,6 +22,8 @@ public class Reset : MonoBehaviour {
 
         HealthController.healthDifference = 0;
         HealthController.maxHealth = 10;
+
+        HighScoreManager.localHighScore = 0;
     }
 
 

@@ -187,10 +187,20 @@ public class Player : MonoBehaviour {
 
     void Die()
     {
-        HighScoreManager.StoreHighScore(HighScoreManager.highScore);
+        HighScoreManager.StoreHighScore();
         Destroy(gameObject);
         //AudioSource.PlayClipAtPoint(dieSound, transform.position);
-        levelManager.LoadLevel("Win");
+        if (HighScoreManager.newHighScore)
+        {
+           // levelManager.LoadLevel("Win");
+            print("New highscore!");
+        }
+        else
+        {
+           // levelManager.LoadLevel("Lose");
+            print("No new highscore");
+        }
+        
         
     }
     

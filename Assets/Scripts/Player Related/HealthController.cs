@@ -35,7 +35,7 @@ public class HealthController : MonoBehaviour
     void Update()
     {
         healthDifference = maxHealth - currentHealth;
-        print("Health difference: " +healthDifference);
+        //print("Health difference: " +healthDifference);
     }
 
     //public static void ResetHealth()

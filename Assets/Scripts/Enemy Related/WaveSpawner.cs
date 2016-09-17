@@ -169,11 +169,11 @@ public class WaveSpawner : MonoBehaviour {
             currentWave = 1;
             Debug.Log("Completed all waves! Looping...");
             nextWave = 0;
-            HighScoreManager.highScore++;
+            HighScoreManager.localHighScore++;
         }
         else
         {
-            HighScoreManager.highScore++;
+            HighScoreManager.localHighScore++;
             currentWave++;
             nextWave++;
         }
