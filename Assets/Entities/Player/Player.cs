@@ -189,18 +189,21 @@ public class Player : MonoBehaviour {
     {
         HighScoreManager.StoreHighScore();
         PlayerPrefs.SetInt("isInteractable", 0);
+        int _oldLoops = PlayerPrefs.GetInt("HighScoreLoopNum", 0);
+        int _oldWaves = PlayerPrefs.GetInt("HighScoreWaveNum", 0);
+        if(WaveSpawner.timesLooped > _oldLoops)
+        {
+            PlayerPrefs.SetInt("HighScoreLoopNum", WaveSpawner.timesLooped);
+        }
+        if(WaveSpawner.currentWave > _oldWaves && WaveSpawner.timesLooped >= _oldLoops)
+        {
+            PlayerPrefs.SetInt("HighScoreWaveNum", WaveSpawner.currentWave);
+        }
+
+       
         Destroy(gameObject);
         //AudioSource.PlayClipAtPoint(dieSound, transform.position);
-        if (HighScoreManager.newHighScore)
-        {
-           // levelManager.LoadLevel("Win");
-            print("New highscore!");
-        }
-        else
-        {
-           // levelManager.LoadLevel("Lose");
-            print("No new highscore");
-        }
+       
         
         
     }

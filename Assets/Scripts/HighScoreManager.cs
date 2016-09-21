@@ -1,8 +1,10 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.SceneManagement;
-
+using UnityEngine.UI;
 public class HighScoreManager : MonoBehaviour {
+
+    public Text highLoops, highWaves, curLoops, curWaves;
 
     public static int localHighScore = 0;
     public static bool newHighScore = false;
@@ -17,6 +19,11 @@ public class HighScoreManager : MonoBehaviour {
 	void Update () {
         print("Highscore: "+ PlayerPrefs.GetInt("highscore"));
         print("Local highscore: " + localHighScore);
+        highLoops.text = "Times Looped: " + PlayerPrefs.GetInt("HighScoreLoopNum");
+        highWaves.text = "Wave Number: " + PlayerPrefs.GetInt("HighScoreWaveNum");
+
+        curLoops.text = "Times Looped: " + WaveSpawner.timesLooped;
+        curWaves.text = "Wave Number: " + WaveSpawner.currentWave;
 	}
 
     public static void StoreHighScore()

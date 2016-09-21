@@ -79,7 +79,7 @@ public class WaveSpawner : MonoBehaviour {
 
     IEnumerator SpawnWave(Wave _wave)
     {
-        Debug.Log("Spawning Wave: " + _wave.name);
+        //Debug.Log("Spawning Wave: " + _wave.name);
         state = SpawnState.SPAWNING;
         for (int i = 0; i < _wave.count; i++)
         {
@@ -127,7 +127,7 @@ public class WaveSpawner : MonoBehaviour {
 
     void SpawnBoss(Transform _boss)
     {
-        Debug.Log("Spawning boss " + _boss.name);
+       // Debug.Log("Spawning boss " + _boss.name);
 
         Transform _bsp = bossSpawnPoints[Random.Range(0, bossSpawnPoints.Length)];
         Instantiate(_boss, _bsp.position, _bsp.rotation);
@@ -151,7 +151,7 @@ public class WaveSpawner : MonoBehaviour {
     void WaveCompleted()
     {
         waveStarted = false;
-        Debug.Log("Wave completed!");   
+       // Debug.Log("Wave completed!");   
         state = SpawnState.COUNTING;
         waveCountDown = timeBetweenWaves;
         if(nextWave % 2 != 0)
@@ -162,12 +162,12 @@ public class WaveSpawner : MonoBehaviour {
             
         }
         
-        Debug.Log("Skillpoints: " + Player.skillPoints);
+        //Debug.Log("Skillpoints: " + Player.skillPoints);
         if(nextWave + 1> waves.Length-1)
         {
             timesLooped++;
             currentWave = 1;
-            Debug.Log("Completed all waves! Looping...");
+            //Debug.Log("Completed all waves! Looping...");
             nextWave = 0;
             HighScoreManager.localHighScore++;
         }
