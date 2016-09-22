@@ -2,9 +2,11 @@
 using System.Collections;
 
 public class Reset : MonoBehaviour {
-
+    bool hasPlayed = false;
     public void Restart()
     {
+        
+
         Player.speedOfLaser = 10;
         Player.damage = 2;
         Player.firingRate = 1f;
