@@ -4,7 +4,6 @@ using System.Collections;
 public class WaveSpawner : MonoBehaviour {
 
     public enum SpawnState { SPAWNING, WAITING, COUNTING};
-
     //allows me to change values of instances of this class in unity inspector
     [System.Serializable]
 	public class Wave
@@ -160,6 +159,7 @@ public class WaveSpawner : MonoBehaviour {
             Player.IncreaseSkillPoints(1);
             popUp = true;
             
+
         }
         
         //Debug.Log("Skillpoints: " + Player.skillPoints);

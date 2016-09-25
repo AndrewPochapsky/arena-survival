@@ -7,7 +7,8 @@ public class MusicPlayer : MonoBehaviour {
 
     public AudioClip startClip;
     public AudioClip gameClip;
-    public AudioClip endClip;
+    public AudioClip loseClip;
+    public AudioClip winClip;
 
     private AudioSource music;
 
@@ -51,9 +52,13 @@ public class MusicPlayer : MonoBehaviour {
             music.clip = gameClip;
         }
 
+        if (level == 2)
+        {
+            music.clip = winClip;
+        }
         if (level == 3)
         {
-            music.clip = endClip;
+            music.clip = loseClip;
         }
         music.loop = true;
         music.Play();

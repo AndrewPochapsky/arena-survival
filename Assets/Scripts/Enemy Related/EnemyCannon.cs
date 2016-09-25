@@ -4,6 +4,7 @@ using System.Collections;
 public class EnemyCannon : MonoBehaviour {
     private Player player;
     private Animator anim;
+    private AudioSource audioSource;
     Vector3 dir;
     public GameObject enemyLaserPrefab, cannonExit;
     public float speedOfLaser;
@@ -20,6 +21,7 @@ public class EnemyCannon : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
+        audioSource = GetComponent<AudioSource>();
         //shooter = GameObject.FindObjectOfType<ShooterEnemyBehaviour>();
         player = GameObject.FindObjectOfType<Player>();
         anim = GetComponent<Animator>();
@@ -50,6 +52,7 @@ public class EnemyCannon : MonoBehaviour {
             GameObject beam = Instantiate(enemyLaserPrefab, new Vector3(cannonExit.transform.position.x, cannonExit.transform.position.y, cannonExit.transform.position.z), Quaternion.identity) as GameObject;
             beam.GetComponent<Rigidbody2D>().velocity = (dir * speedOfLaser);
             //AudioSource.PlayClipAtPoint(fireSound, transform.position);
+            audioSource.Play();
         }
 
     }

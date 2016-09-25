@@ -4,7 +4,7 @@ using System.Collections;
 public class Cannon : MonoBehaviour {
 
     private Animator anim;
-
+    private AudioSource audioSource;
     public enum SpriteRotation
     {
         Up=-90,
@@ -26,6 +26,7 @@ public class Cannon : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+        audioSource = GetComponent<AudioSource>();
         anim = GetComponent<Animator>();
         //player = GameObject.FindGameObjectWithTag("Player");
         myTransform = transform;
@@ -52,6 +53,7 @@ public class Cannon : MonoBehaviour {
         anim.SetTrigger("PlayerShoot");
         GameObject beam = Instantiate(laserPrefab, new Vector3(cannonExit.transform.position.x, cannonExit.transform.position.y, cannonExit.transform.position.z), Quaternion.identity) as GameObject;
         beam.GetComponent<Rigidbody2D>().velocity = (direction * Player.speedOfLaser);
+        audioSource.Play();
         //AudioSource.PlayClipAtPoint(fireSound, transform.position);
     }
 

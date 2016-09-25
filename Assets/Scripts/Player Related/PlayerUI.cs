@@ -4,12 +4,13 @@ using UnityEngine.UI;
 public class PlayerUI : MonoBehaviour {
 
     public Text damage, speed, shotSpeed, fireRate, skillText, skillPopUp;
-
+    private AudioSource audioSource;
     private float fadeDuration = 0.75f;
     private float alpha = 0;
     private Color color;
     // Use this for initialization
     void Start() {
+        audioSource = GetComponent<AudioSource>();
         color = skillPopUp.color;
     }
 
@@ -32,6 +33,7 @@ public class PlayerUI : MonoBehaviour {
         {
 
             skillPopUp.gameObject.SetActive(true);
+            
 
         }
         else

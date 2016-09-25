@@ -4,11 +4,11 @@ using UnityEngine.UI;
 
 public class Player : MonoBehaviour {
     Rigidbody2D rb;
-    public Text popUp;
+    
     private VideoManager videoManager;
     public LevelManager levelManager;
     public AudioClip dieSound;
-
+    private AudioSource audioSource;
     private float invincibleTime = 0.75f;
     public bool invincible = false;
     private PlayerProjectile proj;
@@ -28,7 +28,7 @@ public class Player : MonoBehaviour {
     private float dashCoolDown = 0;
     // Use this for initialization
     void Start () {
-
+        audioSource = GetComponent<AudioSource>();
         videoManager = GameObject.FindObjectOfType<VideoManager>();
 
         Time.timeScale = 1;
@@ -187,6 +187,7 @@ public class Player : MonoBehaviour {
 
     void Die()
     {
+        audioSource.Play();
         HighScoreManager.StoreHighScore();
         PlayerPrefs.SetInt("isInteractable", 0);
         int _oldLoops = PlayerPrefs.GetInt("HighScoreLoopNum", 0);
@@ -200,7 +201,8 @@ public class Player : MonoBehaviour {
             PlayerPrefs.SetInt("HighScoreWaveNum", WaveSpawner.currentWave);
         }
 
-       
+
+        audioSource.Play();
         Destroy(gameObject);
         //AudioSource.PlayClipAtPoint(dieSound, transform.position);
        

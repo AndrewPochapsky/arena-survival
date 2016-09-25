@@ -5,7 +5,7 @@ public class DoubleCannon : MonoBehaviour
 {
     private Player player;
     private Animator anim;
-    
+    private AudioSource audioSource;
     public GameObject enemyLaserPrefab, cannonExit;
     public float speedOfLaser;
     public float firingRate = 0.5f;
@@ -21,6 +21,7 @@ public class DoubleCannon : MonoBehaviour
 
     void Start()
     {
+        audioSource = GetComponent<AudioSource>();
         //shooter = GameObject.FindObjectOfType<ShooterEnemyBehaviour>();
         player = GameObject.FindObjectOfType<Player>();
         anim = GetComponent<Animator>();
@@ -46,7 +47,7 @@ public class DoubleCannon : MonoBehaviour
             anim.SetTrigger("ShootV2");
             GameObject beam = Instantiate(enemyLaserPrefab, new Vector3(cannonExit.transform.position.x, cannonExit.transform.position.y, cannonExit.transform.position.z), Quaternion.identity) as GameObject;
             beam.GetComponent<Rigidbody2D>().velocity = (CannonRotation.dir * speedOfLaser);
-            print("Shoot");
+            audioSource.Play();
             //AudioSource.PlayClipAtPoint(fireSound, transform.position);
         }
 

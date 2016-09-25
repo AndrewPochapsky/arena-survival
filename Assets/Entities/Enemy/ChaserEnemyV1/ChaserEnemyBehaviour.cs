@@ -3,6 +3,7 @@ using System.Collections;
 
 public class ChaserEnemyBehaviour : MonoBehaviour
 {
+    private AudioSource audioSource;
     public HealthPack healthPack;
     public float dropRate = 0.33f;
     public int maxHealth=10;
@@ -43,6 +44,7 @@ public class ChaserEnemyBehaviour : MonoBehaviour
 
     void Start()
     {
+        audioSource = GetComponent<AudioSource>();
         player = GameObject.FindObjectOfType<Player>();
         Init();
         
@@ -79,6 +81,7 @@ public class ChaserEnemyBehaviour : MonoBehaviour
 
     void Die()
     {
+        audioSource.Play();
         Destroy(gameObject);
         if(Random.Range(0f,1f) <= dropRate)
         {
