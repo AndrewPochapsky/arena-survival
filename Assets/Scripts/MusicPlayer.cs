@@ -46,7 +46,7 @@ public class MusicPlayer : MonoBehaviour {
            
         }
 
-        if (level == 2)
+        if (level == 1)
         {
             music.clip = gameClip;
         }
