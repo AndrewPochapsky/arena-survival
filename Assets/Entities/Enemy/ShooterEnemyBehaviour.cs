@@ -33,6 +33,13 @@ public class ShooterEnemyBehaviour : MonoBehaviour
         }
     }
 
+    void Awake()
+    {
+        
+        speed += UpgradeManager.modifiedSpeed * WaveSpawner.timesLooped;
+        maxHealth += UpgradeManager.modifiedHealth * WaveSpawner.timesLooped;
+    }
+
     void Start()
     {
 

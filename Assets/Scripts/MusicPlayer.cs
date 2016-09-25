@@ -43,14 +43,15 @@ public class MusicPlayer : MonoBehaviour {
         if (level == 0)
         {
             music.clip = startClip;
+           
         }
 
-        if (level == 1)
+        if (level == 2)
         {
             music.clip = gameClip;
         }
 
-        if (level == 2)
+        if (level == 3)
         {
             music.clip = endClip;
         }

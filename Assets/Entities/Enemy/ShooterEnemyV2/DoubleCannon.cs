@@ -13,6 +13,12 @@ public class DoubleCannon : MonoBehaviour
     private ShooterEnemyBehaviour shooter;
     public float shootingRange = 5f;
     // Use this for initialization
+
+    void Awake()
+    {
+        firingRate += UpgradeManager.modifiedFireRate* WaveSpawner.timesLooped;
+    }   
+
     void Start()
     {
         //shooter = GameObject.FindObjectOfType<ShooterEnemyBehaviour>();

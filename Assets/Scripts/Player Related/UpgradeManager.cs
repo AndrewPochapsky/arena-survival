@@ -5,6 +5,13 @@ using UnityEngine.UI;
 public class UpgradeManager : MonoBehaviour {
     public Text damageText, speedText, healthText, firingRateText, shotSpeedText;
 
+    //Enemy modifiers:
+    public static int modifiedDamage = 1;
+    public static int modifiedHealth = 3;
+    public static int modifiedSpeed = 1;
+    public static float modifiedFireRate = -0.1f;
+
+
     public static int maxUpgrades = 5;
     public static int currentDamageUpgrades = 0;
     public static int currentMaxHealthUpgrades = 0;

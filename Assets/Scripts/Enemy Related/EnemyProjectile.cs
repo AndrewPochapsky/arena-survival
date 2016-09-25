@@ -5,6 +5,12 @@ public class EnemyProjectile : MonoBehaviour
 {
     private Player player;
 
+    void Awake()
+    {
+        damage += UpgradeManager.modifiedDamage * WaveSpawner.timesLooped;
+    }
+
+
     void Start()
     {
         player = GameObject.FindObjectOfType<Player>();

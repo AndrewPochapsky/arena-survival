@@ -3,7 +3,7 @@ using System.Collections;
 
 public class ChargerEnemy: MonoBehaviour
 {
-
+ 
     public float dropRate = 0.33f;
     public HealthPack healthPack;    
     private Rigidbody2D rb;
@@ -40,7 +40,9 @@ public class ChargerEnemy: MonoBehaviour
     }
     void Awake()
     {
-
+        maxHealth += (UpgradeManager.modifiedHealth * WaveSpawner.timesLooped);
+        damage += (UpgradeManager.modifiedDamage * WaveSpawner.timesLooped);
+        speed += UpgradeManager.modifiedSpeed * WaveSpawner.timesLooped;
         rb = GetComponent<Rigidbody2D>();
     }
     void Start()

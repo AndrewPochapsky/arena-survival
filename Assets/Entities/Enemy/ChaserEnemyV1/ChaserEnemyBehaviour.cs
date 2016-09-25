@@ -34,6 +34,13 @@ public class ChaserEnemyBehaviour : MonoBehaviour
         return damage;
     }
 
+    void Awake()
+    {
+        damage += UpgradeManager.modifiedDamage * WaveSpawner.timesLooped;
+        speed += UpgradeManager.modifiedSpeed * WaveSpawner.timesLooped;
+        maxHealth += UpgradeManager.modifiedHealth * WaveSpawner.timesLooped;
+    }
+
     void Start()
     {
         player = GameObject.FindObjectOfType<Player>();

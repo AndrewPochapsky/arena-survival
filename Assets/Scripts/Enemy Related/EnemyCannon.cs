@@ -11,6 +11,13 @@ public class EnemyCannon : MonoBehaviour {
     public float nextFire = 0.5f;
     private ShooterEnemyBehaviour shooter;
     public float shootingRange = 5f;
+
+    void Awake()
+    {
+        firingRate += UpgradeManager.modifiedFireRate* WaveSpawner.timesLooped;
+    }
+
+
     // Use this for initialization
     void Start () {
         //shooter = GameObject.FindObjectOfType<ShooterEnemyBehaviour>();
