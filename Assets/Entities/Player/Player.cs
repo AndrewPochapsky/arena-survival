@@ -103,6 +103,7 @@ public class Player : MonoBehaviour {
             ChargerEnemy chargerEnemy = col.gameObject.GetComponent<ChargerEnemy>();
             if (chargerEnemy)
             {
+                audioSource.Play();
                 healthController.currentHealth -= chargerEnemy.GetDamage();
                 healthController.SetHealth(healthController.currentHealth, HealthController.maxHealth);
 
@@ -131,6 +132,7 @@ public class Player : MonoBehaviour {
             ChaserEnemyBehaviour chaserEnemy = col.gameObject.GetComponent<ChaserEnemyBehaviour>();
             if (chaserEnemy)
             {
+                audioSource.Play();
                 healthController.currentHealth -= chaserEnemy.GetDamage();
                 healthController.SetHealth(healthController.currentHealth, HealthController.maxHealth);
                 if (healthController.currentHealth> 0)
@@ -157,6 +159,7 @@ public class Player : MonoBehaviour {
                 missle.Hit();
                 if (!invincible)
                 {
+                    audioSource.Play();
                     healthController.currentHealth -= missle.GetDamage();
                     //invincible = true;
                      healthController.SetHealth(healthController.currentHealth, HealthController.maxHealth);

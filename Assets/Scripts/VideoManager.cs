@@ -4,11 +4,11 @@ using UnityEngine.UI;
 
 public class VideoManager : MonoBehaviour {
 
-    private Dropdown resDropDown;
+    public Dropdown resDropDown;
 
 	// Use this for initialization
 	void Start () {
-        resDropDown = GetComponent<Dropdown>();
+       
         resDropDown.interactable = true;
         SetResolution();
 	}
@@ -21,9 +21,9 @@ public class VideoManager : MonoBehaviour {
 
     public void SetResolution()
     {
-        Screen.SetResolution(PlayerPrefs.GetInt("width"), PlayerPrefs.GetInt("height"), true);
+        Screen.SetResolution(PlayerPrefs.GetInt("width", 1920), PlayerPrefs.GetInt("height", 1080), true);
 
-        resDropDown.value = PlayerPrefs.GetInt("ddv");
+        resDropDown.value = PlayerPrefs.GetInt("ddv",0);
     }
 
     public void ChangeRes()
