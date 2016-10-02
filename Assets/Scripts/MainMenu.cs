@@ -29,5 +29,11 @@ public class MainMenu : MonoBehaviour {
         }
     }
 
+    public void SetActive(bool _active)
+    {
+        FadeIn.isActive = _active;
+        
+    }
+
 
 }

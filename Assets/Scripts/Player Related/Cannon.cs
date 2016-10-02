@@ -19,29 +19,34 @@ public class Cannon : MonoBehaviour {
     private Vector2 mousePosition;
     private Transform myTransform;
     public GameObject laserPrefab;
-    
+    private SpriteRenderer sp;
+
     private float angle;
     public GameObject cannonExit;
     private float nextFire = 0.0f;
 
 	// Use this for initialization
 	void Start () {
+        sp = GetComponent<SpriteRenderer>();
         audioSource = GetComponent<AudioSource>();
         anim = GetComponent<Animator>();
-        //player = GameObject.FindGameObjectWithTag("Player");
+        
         myTransform = transform;
 	}
 	
 	// Update is called once per frame
 	void Update ()
     {
-        
+        if (!Player.isAlive)
+        {
+            sp.enabled = false;
+        }
        
-      MoveCannon();
+        MoveCannon();
         
       
 
-        if (Input.GetMouseButton(0)&&Time.time > nextFire)
+        if (Input.GetMouseButton(0)&&Time.time > nextFire && Player.isAlive)
         {
             nextFire = Time.time + Player.firingRate;
             Shoot();

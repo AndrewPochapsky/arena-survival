@@ -4,7 +4,7 @@ using UnityEngine.UI;
 
 public class Player : MonoBehaviour {
     Rigidbody2D rb;
-    
+    private FadeController fadeController;
     private VideoManager videoManager;
     public LevelManager levelManager;
     public AudioClip dieSound;
@@ -15,7 +15,10 @@ public class Player : MonoBehaviour {
     private HealthController healthController;
     private float buttonCooler = 0.5f;
     private int buttonCounter = 0;
-    
+    private SpriteRenderer sp;
+    private CircleCollider2D col;
+    public static bool isAlive = true;
+
     public static float speedOfLaser = 10;
     public static float firingRate = 1f;
     public static int damage = 2;
@@ -28,6 +31,9 @@ public class Player : MonoBehaviour {
     private float dashCoolDown = 0;
     // Use this for initialization
     void Start () {
+        col = GetComponent<CircleCollider2D>();
+        sp = GetComponent<SpriteRenderer>();
+        fadeController = GameObject.FindObjectOfType<FadeController>();
         audioSource = GetComponent<AudioSource>();
         videoManager = GameObject.FindObjectOfType<VideoManager>();
 
@@ -191,7 +197,8 @@ public class Player : MonoBehaviour {
     void Die()
     {
         audioSource.Play();
-        HighScoreManager.StoreHighScore();
+        //HighScoreManager.StoreHighScore();
+        fadeController.InstantiateFadeOutPanel();
         PlayerPrefs.SetInt("isInteractable", 0);
         int _oldLoops = PlayerPrefs.GetInt("HighScoreLoopNum", 0);
         int _oldWaves = PlayerPrefs.GetInt("HighScoreWaveNum", 0);
@@ -204,9 +211,13 @@ public class Player : MonoBehaviour {
             PlayerPrefs.SetInt("HighScoreWaveNum", WaveSpawner.currentWave);
         }
 
-
+        canMove = false;
+        canDash = false;
+        isAlive = false;
+        sp.enabled = false;
+        col.enabled = false;
         audioSource.Play();
-        Destroy(gameObject);
+        
         //AudioSource.PlayClipAtPoint(dieSound, transform.position);
        
         

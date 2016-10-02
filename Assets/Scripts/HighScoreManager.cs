@@ -7,7 +7,7 @@ public class HighScoreManager : MonoBehaviour {
     public Text highLoops, highWaves, curLoops, curWaves;
 
     public static int localHighScore = 0;
-    public static bool newHighScore = false;
+    
 	// Use this for initialization
 	void Start () {
         int resetValue = 0;
@@ -34,13 +34,13 @@ public class HighScoreManager : MonoBehaviour {
         {
             
             PlayerPrefs.SetInt("highscore", localHighScore);
-            newHighScore = true;
+            
             SceneManager.LoadScene("Win");
 
         }
         else
         {
-            newHighScore = false;
+            
             SceneManager.LoadScene("Lose");
         }
     }

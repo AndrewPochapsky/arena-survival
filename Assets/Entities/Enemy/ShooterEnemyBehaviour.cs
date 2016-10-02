@@ -49,7 +49,11 @@ public class ShooterEnemyBehaviour : MonoBehaviour
 
     void Update()
     {
-        distance = Vector2.Distance(transform.position, player.transform.position);
+        if (player != null)
+        {
+            distance = Vector2.Distance(transform.position, player.transform.position);
+        }
+       
         transform.position = Vector2.MoveTowards(transform.position, player.transform.position, speed * Time.deltaTime);
     }
     
