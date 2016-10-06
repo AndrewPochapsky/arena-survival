@@ -19,7 +19,7 @@ public class FadeController : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
-        if (!isPanelInScene && SceneManager.GetActiveScene().name != "Game")
+        if (!isPanelInScene)
         {
             InstantiateFadeInPanel();
         }  

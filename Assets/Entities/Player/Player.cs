@@ -25,7 +25,7 @@ public class Player : MonoBehaviour {
     public static int skillPoints = 5;
     public static float speed = 5;
 
-    public bool canMove = true;
+    public static bool canMove = true;
     public bool canDash;
     private float dashSpeed = 13;
     private float dashCoolDown = 0;
@@ -37,7 +37,7 @@ public class Player : MonoBehaviour {
         audioSource = GetComponent<AudioSource>();
         videoManager = GameObject.FindObjectOfType<VideoManager>();
 
-        Time.timeScale = 1;
+        //Time.timeScale = 1;
         proj = GameObject.FindObjectOfType<PlayerProjectile>();
         rb = GetComponent<Rigidbody2D>();
         healthController = GameObject.FindObjectOfType<HealthController>();

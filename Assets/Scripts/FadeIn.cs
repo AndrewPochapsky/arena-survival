@@ -3,7 +3,7 @@ using System.Collections;
 using UnityEngine.UI;
 
 public class FadeIn : MonoBehaviour {
-
+    
     public float fadeInTime;
     public static bool isActive = true;
     //private Image fadePanel;
@@ -12,6 +12,7 @@ public class FadeIn : MonoBehaviour {
     private Image fadePanel;
     void Awake()
     {
+        PauseGame.readyToPause = false;
         Time.timeScale = 1;
         timeSinceSceneStart = 0;
         
@@ -38,6 +39,7 @@ public class FadeIn : MonoBehaviour {
         }
         else
         {
+            PauseGame.readyToPause = true;
             //timeSinceSceneStart = 0;
             Destroy(gameObject);
         }

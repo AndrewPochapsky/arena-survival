@@ -6,7 +6,7 @@ public class Reset : MonoBehaviour {
     public void Restart()
     {
         
-
+        Player.isAlive = true;
         Player.speedOfLaser = 10;
         Player.damage = 2;
         Player.firingRate = 1f;
