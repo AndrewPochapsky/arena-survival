@@ -28,18 +28,20 @@ public class FadeIn : MonoBehaviour {
 	void Update () {
         if(Time.timeSinceLevelLoad < fadeInTime)
         {
-            print("Time since level load: " + timeSinceSceneStart);
             //fade in
             
             timeSinceSceneStart += Time.deltaTime;
             float alphaChange = Time.deltaTime / fadeInTime;
             currentColor.a -= alphaChange;
             fadePanel.color = currentColor;
-            Debug.Log("Fading");
         }
         else
         {
-            PauseGame.readyToPause = true;
+            if (TutorialScreen.wantTutorial)
+            {
+                PauseGame.readyToPause = true;
+            }
+            
             //timeSinceSceneStart = 0;
             Destroy(gameObject);
         }

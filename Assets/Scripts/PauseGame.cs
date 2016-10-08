@@ -3,28 +3,37 @@ using System.Collections;
 
 public class PauseGame : MonoBehaviour {
 
-    public Transform menuScreen, pauseMenu, controlsMenu, toggle, tutorialScreen;
-    public static bool readyToPause = false;
-    //void Awake()
-    //{
-    //    Time.timeScale = 0;
-    //}
+    public Transform menuScreen, pauseMenu, controlsMenu;
+    public static bool readyToPause = true;
+    private bool hasDoneAlready = false;
+    void Start()
+    {
+        
+    }
 
 	// Update is called once per frame
 	void Update () {
+
+        if (!hasDoneAlready)
+        {
+            if (TutorialScreen.done)
+            {
+                menuScreen.gameObject.SetActive(false);
+                readyToPause = false;
+                print("yes");
+                hasDoneAlready = true;
+            }
+        }
+        print("readyToPause: " + readyToPause);
+
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             Pause();
         }
-        if (readyToPause)
-        {
-            Time.timeScale = 0;
-        }
-        else if (!readyToPause)
-        {
-            Time.timeScale = 1;
-        }
+            
 	}   
+
+
 
     public void Pause()
     {
@@ -57,13 +66,6 @@ public class PauseGame : MonoBehaviour {
         }
     }
 
-    public void StartGame()
-    {
-        Player.canMove = true;
-        readyToPause = false;
-        tutorialScreen.gameObject.SetActive(false);
-        menuScreen.gameObject.SetActive(false);
-        
-    }
+  
 
 }
