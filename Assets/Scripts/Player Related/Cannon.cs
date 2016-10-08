@@ -41,7 +41,7 @@ public class Cannon : MonoBehaviour {
         {
             sp.enabled = false;
         }
-        if (!PauseGame.readyToPause)
+        if (!PauseGame.readyToPause || TutorialScreen.done)
         {
             MoveCannon();
         }
@@ -49,7 +49,7 @@ public class Cannon : MonoBehaviour {
         
       
 
-        if (Input.GetMouseButton(0)&&Time.time > nextFire && Player.isAlive && !PauseGame.readyToPause)
+        if (Input.GetMouseButton(0)&&Time.time > nextFire && Player.isAlive && (!PauseGame.readyToPause || TutorialScreen.done))
         {
             nextFire = Time.time + Player.firingRate;
             Shoot();

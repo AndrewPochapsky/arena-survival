@@ -5,7 +5,8 @@ public class Reset : MonoBehaviour {
     bool hasPlayed = false;
     public void Restart()
     {
-        
+
+        Player.canMove = true;
         Player.isAlive = true;
         Player.speedOfLaser = 10;
         Player.damage = 2;

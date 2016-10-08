@@ -4,10 +4,10 @@ using System.Collections;
 public class MainMenu : MonoBehaviour {
 
     public Transform main, options;
-
+    private SoundController soundController;
     // Use this for initialization
     void Start () {
-	
+        soundController = GameObject.FindObjectOfType<SoundController>();
 	}
 	
 	// Update is called once per frame
@@ -26,6 +26,7 @@ public class MainMenu : MonoBehaviour {
         {
             options.gameObject.SetActive(false);
             main.gameObject.SetActive(true);
+            soundController.SaveVolume();
         }
     }
 

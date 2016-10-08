@@ -20,7 +20,7 @@ public class PauseGame : MonoBehaviour {
             {
                 menuScreen.gameObject.SetActive(false);
                 readyToPause = false;
-                print("yes");
+                print("Is Done");
                 hasDoneAlready = true;
             }
         }

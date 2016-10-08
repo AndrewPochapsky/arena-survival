@@ -64,4 +64,9 @@ public class MusicPlayer : MonoBehaviour {
         music.Play();
     }
 
+    public void ChangeVolume(float _volume)
+    {
+        music.volume = _volume;
+    }
+
 }
