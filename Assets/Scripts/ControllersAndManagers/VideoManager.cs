@@ -10,7 +10,7 @@ public class VideoManager : MonoBehaviour {
 	void Start () {
        
         resDropDown.interactable = true;
-        SetResolution();
+        //SetResolution();
 	}
 	
 	// Update is called once per frame
@@ -28,34 +28,45 @@ public class VideoManager : MonoBehaviour {
 
     public void ChangeRes()
     {
-        PlayerPrefs.SetInt("height", Screen.currentResolution.height);
-        PlayerPrefs.SetInt("width", Screen.currentResolution.width);
+        
 
         PlayerPrefs.SetInt("ddv", resDropDown.value);
 
         if (resDropDown.value == 0)
         {
             Screen.SetResolution(1920, 1200, true);
+            PlayerPrefs.SetInt("height", 1200);
+            PlayerPrefs.SetInt("width", 1920);
         }
         if (resDropDown.value == 1)
         {
             Screen.SetResolution(1920, 1080, true);
+            PlayerPrefs.SetInt("height", 1080);
+            PlayerPrefs.SetInt("width", 1920);
         }
         if (resDropDown.value == 2)
         {
             Screen.SetResolution(1366, 768, true);
+            PlayerPrefs.SetInt("height",768);
+            PlayerPrefs.SetInt("width", 1366);
         }
         if (resDropDown.value == 3)
         {
             Screen.SetResolution(1280, 1024, true);
+            PlayerPrefs.SetInt("height", 1024);
+            PlayerPrefs.SetInt("width", 1280);
         }
         if (resDropDown.value == 4)
         {
             Screen.SetResolution(1280, 800, true);
+            PlayerPrefs.SetInt("height", 800);
+            PlayerPrefs.SetInt("width", 1280);
         }
         if (resDropDown.value == 5)
         {
             Screen.SetResolution(1024, 768, true);
+            PlayerPrefs.SetInt("height", 768);
+            PlayerPrefs.SetInt("width", 1024);
         }
     }
 

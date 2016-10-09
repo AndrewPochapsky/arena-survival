@@ -26,7 +26,7 @@ public class PauseGame : MonoBehaviour {
         }
         print("readyToPause: " + readyToPause);
 
-        if (Input.GetKeyDown(KeyCode.Escape))
+        if (Input.GetKeyDown(KeyCode.Escape) && TutorialScreen.done)
         {
             Pause();
         }

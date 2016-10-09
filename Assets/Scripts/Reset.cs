@@ -5,6 +5,7 @@ public class Reset : MonoBehaviour {
     bool hasPlayed = false;
     public void Restart()
     {
+        TutorialScreen.done = false;
 
         Player.canMove = true;
         Player.isAlive = true;

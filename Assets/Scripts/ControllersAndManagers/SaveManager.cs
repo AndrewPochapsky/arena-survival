@@ -72,8 +72,8 @@ public class SaveManager : MonoBehaviour {
             WaveSpawner.timesLooped = data.timesLooped;
 
             HighScoreManager.localHighScore = data.localHighScore;
-
-           
+            //fixes a tutorial screen bug
+            TutorialScreen.done = false;
         }
     }
 
