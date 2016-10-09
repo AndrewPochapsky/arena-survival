@@ -23,6 +23,7 @@ public class Reset : MonoBehaviour {
 
         WaveSpawner.currentWave = 1;
         WaveSpawner.nextWave = 0;
+        WaveSpawner.timesLooped = 0;
 
         HealthController.healthDifference = 0;
         HealthController.maxHealth = 10;

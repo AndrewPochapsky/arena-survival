@@ -47,8 +47,9 @@ public class Player : MonoBehaviour {
     // Update is called once per frame
     void Update()
     {
-
-        if(dashCoolDown > 0)
+        print("PlayerPref Resolution : " + PlayerPrefs.GetInt("width") + "x" + PlayerPrefs.GetInt("height"));
+        print("Current Resolution : " + Screen.currentResolution.width+ "x" + Screen.currentResolution.height);
+        if (dashCoolDown > 0)
         {
             canDash = false;
             dashCoolDown -= Time.deltaTime;
