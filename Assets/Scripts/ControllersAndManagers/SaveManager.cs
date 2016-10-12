@@ -34,9 +34,9 @@ public class SaveManager : MonoBehaviour {
         data.nextWave = WaveSpawner.nextWave;
         data.timesLooped = WaveSpawner.timesLooped;
 
-        data.localHighScore = HighScoreManager.localHighScore;
-       
-       
+        data.localEasyHighScore = HighScoreManager.localEasyHighScore;
+        data.localNormalHighScore = HighScoreManager.localNormalHighScore;
+
         bf.Serialize(file, data);
         Debug.Log("saved");
         file.Close();
@@ -71,7 +71,8 @@ public class SaveManager : MonoBehaviour {
             WaveSpawner.nextWave = data.nextWave;
             WaveSpawner.timesLooped = data.timesLooped;
 
-            HighScoreManager.localHighScore = data.localHighScore;
+            HighScoreManager.localNormalHighScore = data.localNormalHighScore;
+            HighScoreManager.localEasyHighScore = data.localEasyHighScore;
             //fixes a tutorial screen bug
             TutorialScreen.done = false;
         }
@@ -85,6 +86,6 @@ class PlayerData
     public int healthDifference;
     public float shotspeed, speed, fireRate;
     public int damage, currentHealth, maxHealth, skillPoints, currentDamageUpgrades, currentMaxHealthUpgrades, currentSpeedUpgrades, currentShotSpeedUpgrades, currentFiringRateUpgrades;
-    public int currentWave, nextWave, timesLooped, localHighScore;
+    public int currentWave, nextWave, timesLooped, localNormalHighScore, localEasyHighScore;
     public bool isInteractable;
 }

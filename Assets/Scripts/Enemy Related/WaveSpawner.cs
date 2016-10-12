@@ -139,7 +139,7 @@ public class WaveSpawner : MonoBehaviour {
         if(searchCountDown <= 0)
         {
             searchCountDown = 1f;
-            if (GameObject.FindGameObjectsWithTag("Enemy").Length == 0 && GameObject.FindGameObjectsWithTag("ChargerEnemy").Length==0)
+            if (GameObject.FindGameObjectsWithTag("Enemy").Length == 0)
             {
                 return false;
             }          
@@ -151,7 +151,6 @@ public class WaveSpawner : MonoBehaviour {
     {
         if (DifficultyManager.difficulty == DifficultyManager.Difficulty.EASY)
         {
-            print("Healing after wave");
             player.HealAfterWave();
         }
         waveStarted = false;
@@ -173,11 +172,26 @@ public class WaveSpawner : MonoBehaviour {
             currentWave = 1;
             //Debug.Log("Completed all waves! Looping...");
             nextWave = 0;
-            HighScoreManager.localHighScore++;
+            if (DifficultyManager.difficulty == DifficultyManager.Difficulty.EASY)
+            {
+                HighScoreManager.localEasyHighScore++;
+            }
+            else if (DifficultyManager.difficulty == DifficultyManager.Difficulty.NORMAL)
+            {
+                HighScoreManager.localNormalHighScore++;
+            }
+
         }
         else
         {
-            HighScoreManager.localHighScore++;
+            if (DifficultyManager.difficulty == DifficultyManager.Difficulty.EASY)
+            {
+                HighScoreManager.localEasyHighScore++;
+            }
+            else if (DifficultyManager.difficulty == DifficultyManager.Difficulty.NORMAL)
+            {
+                HighScoreManager.localNormalHighScore++;
+            }
             currentWave++;
             nextWave++;
         }

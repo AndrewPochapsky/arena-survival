@@ -204,16 +204,33 @@ public class Player : MonoBehaviour {
         //HighScoreManager.StoreHighScore();
         fadeController.InstantiateFadeOutPanel();
         PlayerPrefs.SetInt("isInteractable", 0);
-        int _oldLoops = PlayerPrefs.GetInt("HighScoreLoopNum", 0);
-        int _oldWaves = PlayerPrefs.GetInt("HighScoreWaveNum", 0);
-        if(WaveSpawner.timesLooped > _oldLoops)
+        int _oldEasyLoops = PlayerPrefs.GetInt("HighScoreLoopNum", 0);
+        int _oldEasyWaves = PlayerPrefs.GetInt("HighScoreWaveNum", 0);
+        int _oldNormalLoops = PlayerPrefs.GetInt("HighScoreLoopNum", 0);
+        int _oldNormalWaves = PlayerPrefs.GetInt("HighScoreWaveNum", 0);
+        if (DifficultyManager.difficulty == DifficultyManager.Difficulty.EASY)
         {
-            PlayerPrefs.SetInt("HighScoreLoopNum", WaveSpawner.timesLooped);
+            if (WaveSpawner.timesLooped > _oldEasyLoops)
+            {
+                PlayerPrefs.SetInt("EasyHighScoreLoopNum", WaveSpawner.timesLooped);
+            }
+            if (WaveSpawner.currentWave > _oldEasyWaves && WaveSpawner.timesLooped >= _oldEasyLoops)
+            {
+                PlayerPrefs.SetInt("EasyHighScoreWaveNum", WaveSpawner.currentWave);
+            }
         }
-        if(WaveSpawner.currentWave > _oldWaves && WaveSpawner.timesLooped >= _oldLoops)
+        else if (DifficultyManager.difficulty == DifficultyManager.Difficulty.NORMAL)
         {
-            PlayerPrefs.SetInt("HighScoreWaveNum", WaveSpawner.currentWave);
+            if (WaveSpawner.timesLooped > _oldNormalLoops)
+            {
+                PlayerPrefs.SetInt("NormalHighScoreLoopNum", WaveSpawner.timesLooped);
+            }
+            if (WaveSpawner.currentWave > _oldNormalWaves && WaveSpawner.timesLooped >= _oldNormalLoops)
+            {
+                PlayerPrefs.SetInt("NormalHighScoreWaveNum", WaveSpawner.currentWave);
+            }
         }
+
 
         canMove = false;
         canDash = false;

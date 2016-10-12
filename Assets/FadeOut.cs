@@ -36,7 +36,14 @@ public class FadeOut : MonoBehaviour {
         }
         else
         {
-            HighScoreManager.StoreHighScore();
+            if (DifficultyManager.difficulty == DifficultyManager.Difficulty.EASY)
+            {
+                HighScoreManager.StoreEasyHighScore();
+            }
+            else if (DifficultyManager.difficulty == DifficultyManager.Difficulty.NORMAL)
+            {
+                HighScoreManager.StoreNormalHighScore();
+            }
             //timeSinceSceneStart = 0;
             //Destroy(gameObject);
         }
