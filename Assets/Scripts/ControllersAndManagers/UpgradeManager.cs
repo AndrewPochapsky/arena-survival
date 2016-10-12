@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
-
+using System;
 public class UpgradeManager : MonoBehaviour {
     public Text damageText, speedText, healthText, firingRateText, shotSpeedText;
 
@@ -62,7 +62,10 @@ public class UpgradeManager : MonoBehaviour {
         if (Player.skillPoints > 0 && currentFiringRateUpgrades < maxUpgrades)
         {
             currentFiringRateUpgrades++;
+
+
             Player.firingRate += _fireRate;
+            print("Fire Rate: " + Player.firingRate);
             Player.skillPoints--;
         }
     }

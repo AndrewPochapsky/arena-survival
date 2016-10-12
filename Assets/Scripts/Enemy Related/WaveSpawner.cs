@@ -149,6 +149,11 @@ public class WaveSpawner : MonoBehaviour {
 
     void WaveCompleted()
     {
+        if (DifficultyManager.difficulty == DifficultyManager.Difficulty.EASY)
+        {
+            print("Healing after wave");
+            player.HealAfterWave();
+        }
         waveStarted = false;
        // Debug.Log("Wave completed!");   
         state = SpawnState.COUNTING;
@@ -158,8 +163,7 @@ public class WaveSpawner : MonoBehaviour {
             //Player.skillPoints++;
             Player.IncreaseSkillPoints(1);
             popUp = true;
-            
-
+           
         }
         
         //Debug.Log("Skillpoints: " + Player.skillPoints);

@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
-
+using System;
 public class Player : MonoBehaviour {
     Rigidbody2D rb;
     private FadeController fadeController;
@@ -26,9 +26,11 @@ public class Player : MonoBehaviour {
     public static float speed = 5;
 
     public static bool canMove = true;
-    public bool canDash;
+    private bool canDash;
     private float dashSpeed = 13;
     private float dashCoolDown = 0;
+
+    private int healthBonus = 1;
     // Use this for initialization
     void Start () {
         col = GetComponent<CircleCollider2D>();
@@ -47,8 +49,9 @@ public class Player : MonoBehaviour {
     // Update is called once per frame
     void Update()
     {
-        print("PlayerPref Resolution : " + PlayerPrefs.GetInt("width") + "x" + PlayerPrefs.GetInt("height"));
-        print("Current Resolution : " + Screen.currentResolution.width+ "x" + Screen.currentResolution.height);
+        firingRate = (float)Math.Round(firingRate, 2);
+        speed = (float)Math.Round(speed, 2);
+        
         if (dashCoolDown > 0)
         {
             canDash = false;
@@ -268,6 +271,18 @@ public class Player : MonoBehaviour {
         skillPoints += _sp;
         
         return skillPoints;
+    }
+
+
+    public void HealAfterWave()
+    {
+        if (healthController.currentHealth != HealthController.maxHealth)
+        {
+            healthController.currentHealth += healthBonus;
+            healthController.SetHealth(healthController.currentHealth, HealthController.maxHealth);
+        }
+       
+
     }
 
 }

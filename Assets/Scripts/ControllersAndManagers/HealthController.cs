@@ -13,7 +13,7 @@ public class HealthController : MonoBehaviour
 
     //public static float currentHealth = 10f;
 
-    public static int _currentHealth;
+    private int _currentHealth;
     public int currentHealth
     {
         get { return _currentHealth; }

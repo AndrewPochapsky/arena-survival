@@ -3,7 +3,7 @@ using System.Collections;
 
 public class MainMenu : MonoBehaviour {
 
-    public Transform main, options;
+    public Transform main, options, difficultyScreen;
     private SoundController soundController;
     // Use this for initialization
     void Start () {
@@ -35,6 +35,20 @@ public class MainMenu : MonoBehaviour {
         FadeIn.isActive = _active;
         
     }
+    public void StartGame()
+    {
+        if (!difficultyScreen.gameObject.activeInHierarchy)
+        {
+            difficultyScreen.gameObject.SetActive(true);
+            main.gameObject.SetActive(false);
+        }
+        else
+        {
+            difficultyScreen.gameObject.SetActive(false);
+            main.gameObject.SetActive(true);
+        }
+    }
+
 
 
 }
