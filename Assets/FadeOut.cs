@@ -38,10 +38,12 @@ public class FadeOut : MonoBehaviour {
         {
             if (DifficultyManager.difficulty == DifficultyManager.Difficulty.EASY)
             {
+                print("Loading Easy thing");
                 HighScoreManager.StoreEasyHighScore();
             }
             else if (DifficultyManager.difficulty == DifficultyManager.Difficulty.NORMAL)
             {
+                print("Loading Normal thing"); 
                 HighScoreManager.StoreNormalHighScore();
             }
             //timeSinceSceneStart = 0;

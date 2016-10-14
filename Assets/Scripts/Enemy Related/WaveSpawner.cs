@@ -151,8 +151,14 @@ public class WaveSpawner : MonoBehaviour {
     {
         if (DifficultyManager.difficulty == DifficultyManager.Difficulty.EASY)
         {
+            HighScoreManager.localEasyHighScore++;
             player.HealAfterWave();
         }
+        else if (DifficultyManager.difficulty == DifficultyManager.Difficulty.NORMAL)
+        {
+            HighScoreManager.localNormalHighScore++;
+        }
+        
         waveStarted = false;
        // Debug.Log("Wave completed!");   
         state = SpawnState.COUNTING;
@@ -172,26 +178,9 @@ public class WaveSpawner : MonoBehaviour {
             currentWave = 1;
             //Debug.Log("Completed all waves! Looping...");
             nextWave = 0;
-            if (DifficultyManager.difficulty == DifficultyManager.Difficulty.EASY)
-            {
-                HighScoreManager.localEasyHighScore++;
-            }
-            else if (DifficultyManager.difficulty == DifficultyManager.Difficulty.NORMAL)
-            {
-                HighScoreManager.localNormalHighScore++;
-            }
-
         }
         else
         {
-            if (DifficultyManager.difficulty == DifficultyManager.Difficulty.EASY)
-            {
-                HighScoreManager.localEasyHighScore++;
-            }
-            else if (DifficultyManager.difficulty == DifficultyManager.Difficulty.NORMAL)
-            {
-                HighScoreManager.localNormalHighScore++;
-            }
             currentWave++;
             nextWave++;
         }
