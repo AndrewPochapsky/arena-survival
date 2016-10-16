@@ -32,7 +32,8 @@ public class Cannon : MonoBehaviour {
         anim = GetComponent<Animator>();
         
         myTransform = transform;
-	}
+        audioSource.volume = PlayerPrefs.GetFloat("sfxVolume", 1);
+    }
 	
 	// Update is called once per frame
 	void Update ()

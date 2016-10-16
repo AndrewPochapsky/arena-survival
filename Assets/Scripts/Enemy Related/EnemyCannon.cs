@@ -25,6 +25,7 @@ public class EnemyCannon : MonoBehaviour {
         //shooter = GameObject.FindObjectOfType<ShooterEnemyBehaviour>();
         player = GameObject.FindObjectOfType<Player>();
         anim = GetComponent<Animator>();
+        audioSource.volume = PlayerPrefs.GetFloat("sfxVolume", 1);
     }
 	
 	// Update is called once per frame

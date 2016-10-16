@@ -1,10 +1,11 @@
 ﻿using UnityEngine;
 using System.Collections;
-
+using UnityEngine.UI;
 public class MainMenu : MonoBehaviour {
 
     public Transform main, options, difficultyScreen;
     private SoundController soundController;
+    public Text savedWaves, savedLoops, header;
     // Use this for initialization
     void Start () {
         soundController = GameObject.FindObjectOfType<SoundController>();
@@ -12,7 +13,7 @@ public class MainMenu : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-	
+        DisplaySavedScore();
 	}
 
     public void Options()
@@ -47,6 +48,28 @@ public class MainMenu : MonoBehaviour {
             difficultyScreen.gameObject.SetActive(false);
             main.gameObject.SetActive(true);
         }
+    }
+
+    private void DisplaySavedScore()
+    {
+        
+
+        if (PlayerPrefs.GetInt("isInteractable") == 0)
+        {
+            header.text = "No Current Game";
+            savedWaves.gameObject.SetActive(false);
+            savedLoops.gameObject.SetActive(false);
+        }
+        else
+        {
+            savedWaves.gameObject.SetActive(true);
+            savedLoops.gameObject.SetActive(true);
+
+            header.text = "Current Game:";
+            savedWaves.text = "Wave Number: " + PlayerPrefs.GetInt("SavedWaveNumber", 0);
+            savedLoops.text = "Loops: " + PlayerPrefs.GetInt("SavedLoopNumber", 0);
+        }
+
     }
 
 

@@ -5,16 +5,14 @@ using System;
 public class Player : MonoBehaviour {
     Rigidbody2D rb;
     private FadeController fadeController;
-    private VideoManager videoManager;
-    public LevelManager levelManager;
+    
     public AudioClip dieSound;
     private AudioSource audioSource;
     private float invincibleTime = 0.75f;
     public bool invincible = false;
     private PlayerProjectile proj;
     private HealthController healthController;
-    private float buttonCooler = 0.5f;
-    private int buttonCounter = 0;
+   
     private SpriteRenderer sp;
     private CircleCollider2D col;
     public static bool isAlive = true;
@@ -37,7 +35,7 @@ public class Player : MonoBehaviour {
         sp = GetComponent<SpriteRenderer>();
         fadeController = GameObject.FindObjectOfType<FadeController>();
         audioSource = GetComponent<AudioSource>();
-        videoManager = GameObject.FindObjectOfType<VideoManager>();
+        audioSource.volume = PlayerPrefs.GetFloat("sfxVolume", 1);
 
         //Time.timeScale = 1;
         proj = GameObject.FindObjectOfType<PlayerProjectile>();
@@ -272,9 +270,13 @@ public class Player : MonoBehaviour {
         {
             healthController.currentHealth += healthBonus;
             healthController.SetHealth(healthController.currentHealth, HealthController.maxHealth);
-        }
-       
+        }  
 
     }
+
+    //public void ChangeSFXVolume(float _volume)
+    //{
+    //    audioSource.volume = _volume;
+    //}
 
 }

@@ -37,6 +37,10 @@ public class SaveManager : MonoBehaviour {
         data.localEasyHighScore = HighScoreManager.localEasyHighScore;
         data.localNormalHighScore = HighScoreManager.localNormalHighScore;
 
+        //This is for displaying the current score of a saved game
+        PlayerPrefs.SetInt("SavedWaveNumber", WaveSpawner.currentWave);
+        PlayerPrefs.SetInt("SavedLoopNumber", WaveSpawner.timesLooped);
+
         bf.Serialize(file, data);
         Debug.Log("saved");
         file.Close();
@@ -56,7 +60,7 @@ public class SaveManager : MonoBehaviour {
             Player.speedOfLaser = data.shotspeed;
             Player.speed = data.speed;
             Player.firingRate = data.fireRate;
-            //healthController.currentHealth = data.currentHealth;
+
             HealthController.maxHealth = data.maxHealth;
             HealthController.healthDifference = data.healthDifference;
 
@@ -75,6 +79,9 @@ public class SaveManager : MonoBehaviour {
             HighScoreManager.localEasyHighScore = data.localEasyHighScore;
             //fixes a tutorial screen bug
             TutorialScreen.done = false;
+            //fixes very minor arrow bug when loading a game
+            WaveSpawner.waveStarted = false;
+
         }
     }
 

@@ -13,8 +13,8 @@ public class HighScoreManager : MonoBehaviour {
 
     // Update is called once per frame
     void Update () {
-        print("Easy HighScore: " + PlayerPrefs.GetInt("easyHighscore"));
-        print("Local Easy Highscore: " + localEasyHighScore);
+        print("Normal HighScore: " + PlayerPrefs.GetInt("normalHighscore"));
+        print("Local Normal Highscore: " + localNormalHighScore);
         if (SceneManager.GetActiveScene().name == "Start")
         {
             easyHighLoops.text = "Loops: " + PlayerPrefs.GetInt("EasyHighScoreLoopNum", 0);
@@ -58,7 +58,7 @@ public class HighScoreManager : MonoBehaviour {
             SceneManager.LoadScene("Win");
 
         }
-        else
+        else if (localEasyHighScore <= oldEasyHighScore)
         {
 
             SceneManager.LoadScene("Lose");
@@ -78,7 +78,7 @@ public class HighScoreManager : MonoBehaviour {
             SceneManager.LoadScene("Win");
 
         }
-        else
+        else if (localNormalHighScore < oldNormalHighScore)
         {
             
             SceneManager.LoadScene("Lose");
