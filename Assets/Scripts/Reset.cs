@@ -2,7 +2,6 @@
 using System.Collections;
 
 public class Reset : MonoBehaviour {
-    bool hasPlayed = false;
     public void Restart()
     {
         TutorialScreen.done = false;
@@ -27,9 +26,14 @@ public class Reset : MonoBehaviour {
 
         HealthController.healthDifference = 0;
         HealthController.maxHealth = 10;
+        if (DifficultyManager.difficulty == DifficultyManager.Difficulty.HARD)
+        {
+            HealthController.maxHealth = 6;
+        }
 
         HighScoreManager.localNormalHighScore = 1;
         HighScoreManager.localEasyHighScore = 1;
+        HighScoreManager.localHardHighScore = 1;
     }
 
 

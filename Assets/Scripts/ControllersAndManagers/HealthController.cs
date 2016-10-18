@@ -22,6 +22,11 @@ public class HealthController : MonoBehaviour
 
     void Awake()
     {
+        if (DifficultyManager.difficulty == DifficultyManager.Difficulty.HARD)
+        {
+            maxHealth = 6;
+        }
+
         currentHealth = maxHealth;
         SetHealth(currentHealth, maxHealth);
     }

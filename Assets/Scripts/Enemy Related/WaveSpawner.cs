@@ -158,7 +158,11 @@ public class WaveSpawner : MonoBehaviour {
         {
             HighScoreManager.localNormalHighScore++;
         }
-        
+        else if (DifficultyManager.difficulty == DifficultyManager.Difficulty.HARD)
+        {
+            HighScoreManager.localHardHighScore++;
+        }
+
         waveStarted = false;
        // Debug.Log("Wave completed!");   
         state = SpawnState.COUNTING;

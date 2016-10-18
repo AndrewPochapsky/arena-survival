@@ -46,6 +46,11 @@ public class FadeOut : MonoBehaviour {
                 print("Loading Normal thing"); 
                 HighScoreManager.StoreNormalHighScore();
             }
+            else if (DifficultyManager.difficulty == DifficultyManager.Difficulty.HARD)
+            {
+                print("Loading Hard thing");
+                HighScoreManager.StoreHardHighScore();
+            }
             //timeSinceSceneStart = 0;
             //Destroy(gameObject);
         }

@@ -3,7 +3,7 @@ using System.Collections;
 
 public class DifficultyManager : MonoBehaviour {
 
-    public enum Difficulty { EASY, NORMAL};
+    public enum Difficulty { EASY, NORMAL, HARD};
 
     public static Difficulty difficulty;
     public static int currentDifficulty;
@@ -33,6 +33,10 @@ public class DifficultyManager : MonoBehaviour {
     public void SetDifficultyToNormal()
     {
         difficulty = Difficulty.NORMAL;
+    }
+    public void SetDifficultyToHard()
+    {
+        difficulty = Difficulty.HARD;
     }
 
 
