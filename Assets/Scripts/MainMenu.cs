@@ -64,8 +64,15 @@ public class MainMenu : MonoBehaviour {
         {
             savedWaves.gameObject.SetActive(true);
             savedLoops.gameObject.SetActive(true);
+            if (PlayerPrefs.GetInt("SavedDifficulty")==0)
+            {
+                header.text = "Difficulty: EASY" ;
+            }
+            else if (PlayerPrefs.GetInt("SavedDifficulty") == 1)
+            {
+                header.text = "Difficulty: NORMAL";
+            }
 
-            header.text = "Current Game:";
             savedWaves.text = "Wave Number: " + PlayerPrefs.GetInt("SavedWaveNumber", 0);
             savedLoops.text = "Loops: " + PlayerPrefs.GetInt("SavedLoopNumber", 0);
         }

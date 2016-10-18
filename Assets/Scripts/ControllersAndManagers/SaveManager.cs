@@ -40,6 +40,7 @@ public class SaveManager : MonoBehaviour {
         //This is for displaying the current score of a saved game
         PlayerPrefs.SetInt("SavedWaveNumber", WaveSpawner.currentWave);
         PlayerPrefs.SetInt("SavedLoopNumber", WaveSpawner.timesLooped);
+        PlayerPrefs.SetInt("SavedDifficulty", DifficultyManager.currentDifficulty);
 
         bf.Serialize(file, data);
         Debug.Log("saved");

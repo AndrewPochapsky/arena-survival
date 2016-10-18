@@ -6,7 +6,7 @@ public class DifficultyManager : MonoBehaviour {
     public enum Difficulty { EASY, NORMAL};
 
     public static Difficulty difficulty;
-
+    public static int currentDifficulty;
 	// Use this for initialization
 	void Start () {
 	
@@ -15,6 +15,14 @@ public class DifficultyManager : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
         print("Current Difficulty: " + difficulty);
+        if (difficulty == Difficulty.EASY)
+        {
+            currentDifficulty = 0;
+        }
+        else if (difficulty == Difficulty.NORMAL)
+        {
+            currentDifficulty = 1;
+        }
 	}
 
     public void SetDifficultyToEasy()
