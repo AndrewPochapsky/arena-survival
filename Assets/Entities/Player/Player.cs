@@ -6,7 +6,7 @@ public class Player : MonoBehaviour {
     Rigidbody2D rb;
     private FadeController fadeController;
     
-    public AudioClip dieSound;
+    public AudioClip hitSound, dashSound;
     private AudioSource audioSource;
     private float invincibleTime = 0.75f;
     public bool invincible = false;
@@ -29,18 +29,27 @@ public class Player : MonoBehaviour {
     private float dashCoolDown = 0;
 
     private int healthBonus = 1;
-    // Use this for initialization
-    void Start () {
+
+    void Awake()
+    {
         col = GetComponent<CircleCollider2D>();
         sp = GetComponent<SpriteRenderer>();
         fadeController = GameObject.FindObjectOfType<FadeController>();
         audioSource = GetComponent<AudioSource>();
-        audioSource.volume = PlayerPrefs.GetFloat("sfxVolume", 1);
-
-        //Time.timeScale = 1;
         proj = GameObject.FindObjectOfType<PlayerProjectile>();
         rb = GetComponent<Rigidbody2D>();
         healthController = GameObject.FindObjectOfType<HealthController>();
+    }
+
+    // Use this for initialization
+    void Start () {
+        
+       
+        audioSource.volume = PlayerPrefs.GetFloat("sfxVolume", 1);
+
+        //Time.timeScale = 1;
+       
+        audioSource.clip = hitSound;
 
     }
 
@@ -220,40 +229,52 @@ public class Player : MonoBehaviour {
     
     IEnumerator DashUp()
     {
+        audioSource.clip = dashSound;
+        audioSource.Play();
         canMove = false;
         rb.velocity = Vector2.up * dashSpeed;
         yield return new WaitForSeconds(0.25f);
         rb.velocity = Vector2.zero;
         canMove = true;
-        dashCoolDown = 2;   
+        dashCoolDown = 2;
+        audioSource.clip = hitSound;
     }
 
     IEnumerator DashDown()
     {
+        audioSource.clip = dashSound;
+        audioSource.Play();
         canMove = false;
         rb.velocity = Vector2.down * dashSpeed;
         yield return new WaitForSeconds(0.25f);
         rb.velocity = Vector2.zero;
         canMove = true;
         dashCoolDown = 2;
+        audioSource.clip = hitSound;
     }
     IEnumerator DashLeft()
     {
+        audioSource.clip = dashSound;
+        audioSource.Play();
         canMove = false;
         rb.velocity = Vector2.left * dashSpeed;
         yield return new WaitForSeconds(0.25f);
         rb.velocity = Vector2.zero;
         canMove = true;
         dashCoolDown = 2;
+        audioSource.clip = hitSound;
     }
     IEnumerator DashRight()
     {
+        audioSource.clip = dashSound;
+        audioSource.Play();
         canMove = false;
         rb.velocity = Vector2.right * dashSpeed;
         yield return new WaitForSeconds(0.25f);
         rb.velocity = Vector2.zero;
         canMove = true;
         dashCoolDown = 2;
+        audioSource.clip = hitSound;
     }
 
     public static int IncreaseSkillPoints(int _sp)
